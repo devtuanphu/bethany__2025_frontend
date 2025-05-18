@@ -19,12 +19,14 @@ const Header = () => {
         Work, <Link href="/about">Info</Link>, Contact
       </div>
 
-      <div className="text-[33px]">Auckland 21:08:25 36°51'S/174°46'E</div>
+      <div className="hidden tablet:block text-[33px]">
+        Auckland 21:08:25 36°51'S/174°46'E
+      </div>
       <div></div>
 
       <button
         onClick={toggleMenu}
-        className="z-50 text-[30px] absolute top-0 right-0 bottom-0 p-8 transition-transform duration-300 hover:scale-110 active:scale-95 tablet:hidden"
+        className="z-50 text-[30px] absolute top-0 right-0 bottom-0 p-4 tablet:p-8 transition-transform duration-300 hover:scale-110 active:scale-95 tablet:hidden"
         aria-label="Toggle Menu"
       >
         <div className="transition-opacity duration-300">

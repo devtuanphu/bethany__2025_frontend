@@ -3,9 +3,9 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="flex justify-between px-[40px] py-[28px] mt-[20px] min-h-[180px]">
+    <div className="flex flex-row gap-2 justify-between px-[40px] py-[28px] mt-[20px] min-h-[180px]">
       <div className="flex flex-col">
-        <div className="text-[22px] font-semibold mb-1">CONTACT</div>
+        <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">CONTACT</div>
         <Link
           className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold"
           href="https://mail.google.com/mail/?view=cm&fs=1&to=BETHANYNAMTRAN%40GMAIL.COM"
@@ -23,7 +23,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className="flex flex-col">
-        <div className="text-[22px] font-semibold mb-1">MORE INFO</div>
+        <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">MORE INFO</div>
         <Link
           className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold"
           href="https://www.linkedin.com/in/bethany-tran-design/?fbclid=IwAR2gap8rJgP_rZNgPIACCRGh3fwaknkddtkItuoajsmtxG6Lh81EWMosfn4"
@@ -38,13 +38,13 @@ const Footer = () => {
         </Link>
       </div>
       <div className="flex flex-col">
-        <div className="text-[22px] font-semibold mb-1">LOCATION</div>
+        <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">LOCATION</div>
         <div className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold">
           TAMAKI MAKAURAU
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="text-[22px] font-semibold mb-1">BETHANY-TRAN</div>
+        <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">BETHANY-TRAN</div>
         <div className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold ml-auto">
           © 2024 - 2025
         </div>

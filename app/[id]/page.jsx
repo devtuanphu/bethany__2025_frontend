@@ -1,7 +1,14 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
-const ContentPage = () => {
-  return <div>day la file noi dung</div>;
-};
+const ArticlePage = dynamic(() => import("@/components/articlePage"), {
+  ssr: false,
+});
 
-export default ContentPage;
+export default function PageDetail() {
+  return (
+    <div>
+      <ArticlePage />
+    </div>
+  );
+}
