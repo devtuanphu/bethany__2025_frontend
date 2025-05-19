@@ -13,9 +13,9 @@ const Navbar = ({ isOpen }) => {
       }`}
     >
       <div className="flex flex-col items-center gap-20 text-white text-4xl">
-        <Link href="">Work</Link>
+        <Link href="#project">Work</Link>
         <Link href="/about">Info</Link>
-        <Link href="/">Contact</Link>
+        <Link href="#contact">Contact</Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import CircleCursor from "@/components/CircleCursor";
 
 export const metadata = {
   title: "BETHANY-TRAN",
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         {children}
+        <CircleCursor />
         <Footer />
       </body>
     </html>

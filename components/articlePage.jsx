@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { articles } from "./../lib/articles";
+import { articles } from "@/lib/articles";
 
 export default function ArticlePage() {
   const params = useParams();

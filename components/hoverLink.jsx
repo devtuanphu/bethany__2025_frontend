@@ -13,7 +13,7 @@ export default function HoverLink({
   const [show, setShow] = useState(false);
 
   return (
-    <span className="relative inline-block">
+    <div className="relative inline-block">
       <Link
         href="#"
         onMouseEnter={() => setShow(true)}
@@ -27,7 +27,7 @@ export default function HoverLink({
         <div
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] flex items-center justify-center"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] flex items-center justify-center"
           style={{ width, height }}
         >
           <Image
@@ -35,10 +35,10 @@ export default function HoverLink({
             alt={`Preview for ${label}`}
             width={width}
             height={height}
-            className="object-cover w-full h-auto"
+            className="object-cover w-full h-full"
           />
         </div>
       )}
-    </span>
+    </div>
   );
 }

@@ -13,15 +13,15 @@ const hoverData = {
 
 export default function AboutPage() {
   return (
-    <div className=" bg-black text-white mt-[80px] tablet:mt-[120px] laptop:mt-[80px] px-[40px] overflow-x-hidden">
-      <div className=" space-y-6 text-[30px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
+    <div className=" bg-black text-white pt-[80px] tablet:pt-[120px] laptop:pt-[80px] px-[40px] pb-[40px] overflow-x-hidden">
+      <div className="text-[30px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
         <div>
           Hello! My name is{" "}
           <HoverLink
             label="Bethany Tran"
             mediaSrc={hoverData["Bethany Tran"]}
-            width={220}
-            height={180}
+            width={200}
+            height={234}
           />{" "}
           a creative designer from Aotearoa, New Zealand, specialising in{" "}
           <HoverLink
@@ -43,8 +43,8 @@ export default function AboutPage() {
           <HoverLink
             label="designing"
             mediaSrc={hoverData["designing"]}
-            width={140}
-            height={80}
+            width={180}
+            height={100}
           />{" "}
           digital media assets to{" "}
           <HoverLink
@@ -61,7 +61,7 @@ export default function AboutPage() {
             label="eager"
             mediaSrc={hoverData["eager"]}
             width={200}
-            height={140}
+            height={216}
           />{" "}
           to continue applying my passion and expertise to create compelling
           visual experiences that leave a lasting impact.
