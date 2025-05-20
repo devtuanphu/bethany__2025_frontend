@@ -1,7 +1,5 @@
 "use client";
-
-import HoverLink from "@/components/HoverLink";
-
+import HoverLink from "@/components/hoverLink";
 const hoverData = {
   "Bethany Tran": "/bethany-tran.png",
   "graphic, motion & digital design": "/digital-graphic.gif",

@@ -3,8 +3,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { VscMenu, VscChromeClose } from "react-icons/vsc";
-import Navbar from "./Navbar";
-
+import Navbar from "./navbar";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [aucklandTime, setAucklandTime] = useState("");
