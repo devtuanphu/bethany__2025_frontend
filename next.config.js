@@ -19,6 +19,11 @@ const nextConfig = {
         port: "1337", // Port mà Strapi đang chạy
         pathname: "/uploads/**", // Đảm bảo các đường dẫn hình ảnh trong Strapi sẽ được nhận diện
       },
+      {
+        protocol: "https", // Chắc chắn sử dụng HTTP, vì Strapi đang chạy trên HTTP (local)
+        hostname: "admin.bethany.co.nz", // Địa chỉ hostname của Strapi
+        pathname: "/uploads/**", // Đảm bảo các đường dẫn hình ảnh trong Strapi sẽ được nhận diện
+      },
     ],
   },
 };
