@@ -37,7 +37,7 @@ const Header = () => {
       </div>
 
       <div className="text-[33px] hidden tablet:block">
-        <Link href="#project">Work</Link>, <Link href="/about">Info</Link>,
+        <Link href="/">Work</Link>, <Link href="/about">Info</Link>,{" "}
         <Link href="#contact">Contact</Link>
       </div>
 
