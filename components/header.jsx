@@ -41,10 +41,12 @@ const Header = () => {
       </div>
 
       <div className="hidden tablet:block text-[33px]">
-        Auckland {aucklandTime} 36°51'S/174°46'E
+        <div className="flex gap-4">
+          <span>Auckland</span>
+          <span>{aucklandTime} </span>
+          <span>36°51'S/174°46'E</span>
+        </div>
       </div>
-
-      <div></div>
 
       <button
         onClick={toggleMenu}

@@ -35,7 +35,15 @@ const page = async ({ params }) => {
   const widthMedia = firstMedia?.width;
   const isVideo =
     firstMedia?.mime?.startsWith("video") || firstMedia?.url?.endsWith(".mp4");
-
+  const getOptimizedImageUrl = (media) => {
+    if (media.formats?.large)
+      return process.env.NEXT_PUBLIC_URL_BE + media.formats.large.url;
+    if (media.formats?.medium)
+      return process.env.NEXT_PUBLIC_URL_BE + media.formats.medium.url;
+    if (media.formats?.small)
+      return process.env.NEXT_PUBLIC_URL_BE + media.formats.small.url;
+    return process.env.NEXT_PUBLIC_URL_BE + media.url; // fallback ảnh gốc
+  };
   return (
     <>
       <div className="bg-black text-white px-[40px] py-6 space-y-10 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
@@ -138,12 +146,12 @@ const page = async ({ params }) => {
               return (
                 <Image
                   key={media.id || index}
-                  src={process.env.NEXT_PUBLIC_URL_BE + media.url}
+                  src={getOptimizedImageUrl(media)}
                   alt={media.alternativeText || "media"}
                   width={media.width}
                   height={media.height}
                   className="w-full h-auto rounded-xl"
-                  priority={index === 0} // ưu tiên tải ảnh đầu tiên trong list (nếu muốn)
+                  priority={index === 0}
                 />
               );
             }

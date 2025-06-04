@@ -37,9 +37,8 @@ export default async function Home() {
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[80px] px-[40px]">
-      <div className="w-full flex gap-3 mb-[50px] tablet:mb-0">
-        <div className="hidden tablet:block tablet:w-5/12"></div>
-        <div className="w-ful tablet:w-6/12 text-[20px] tablet:text-[30px] leading-5 tablet:leading-9">
+      <div className="w-full flex justify-end gap-3 mb-[50px] tablet:mb-0">
+        <div className="w-full text-[20px] tablet:w-[535px] tablet:text-[30px] leading-5 tablet:leading-9 ">
           {title?.data?.attributes?.title}
         </div>
       </div>
@@ -91,11 +90,11 @@ export default async function Home() {
                   />
                 </Link>
                 <div className="mt-[6px]">
-                  <div className="flex justify-between text-[13px] tablet:text-[20px] font-semibold">
+                  <div className="flex leading-3  justify-between text-[13px] tablet:text-[20px] font-semibold">
                     <p>{item.subTitle1 || item.year}</p>
                     <p>{item.subTitle2 || item.studio}</p>
                   </div>
-                  <div className="flex justify-between text-[13px] tablet:text-[20px] font-semibold">
+                  <div className="flex leading-3 justify-between text-[13px] tablet:text-[20px] font-semibold">
                     <p>{item.subTitle3}</p>
                     <p>{item.subTitle4}</p>
                   </div>
