@@ -30,7 +30,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 flex flex-row justify-between flex-wrap min-h-[70px] px-[40px] items-center bg-black gap-[10px] z-50">
+    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4">
       <div className="text-[33px]">
         <Link href="/">Bethany Tran</Link>
       </div>
@@ -44,8 +44,11 @@ const Header = () => {
         <div className="flex gap-4">
           <span>Auckland</span>
           <span>{aucklandTime} </span>
-          <span>36°51'S/174°46'E</span>
         </div>
+      </div>
+
+      <div className="flex justify-end">
+        <span className=" text-[33px]">36°51'S/174°46'E</span>
       </div>
 
       <button
