@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { VscMenu, VscChromeClose } from "react-icons/vsc";
 import Navbar from "./navbar";
+import Image from "next/image";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [aucklandTime, setAucklandTime] = useState("");
@@ -36,19 +37,29 @@ const Header = () => {
       </div>
 
       <div className="text-[33px] hidden tablet:block">
-        <Link href="/">Work</Link>, <Link href="/about">Info</Link>,{" "}
-        <Link href="#contact">Contact</Link>
+        <Link href="/">Work</Link>, <Link href="/about">Info</Link>{" "}
       </div>
 
       <div className="hidden tablet:block text-[33px]">
         <div className="flex gap-4">
           <span>Auckland</span>
+          <span className=" text-[33px] pr-8">36°51'S/174°46'E</span>
           <span>{aucklandTime} </span>
         </div>
       </div>
 
       <div className="flex justify-end">
-        <span className=" text-[33px]">36°51'S/174°46'E</span>
+        <div className="flex gap-4 items-center">
+          <span className=" text-[30px]">Say</span>
+          <div>
+            <Image
+              src="/hand.png"
+              alt="hand"
+              width={65} // lấy đúng width gốc
+              height={65} // lấy đúng height gốc
+            />
+          </div>
+        </div>
       </div>
 
       <button

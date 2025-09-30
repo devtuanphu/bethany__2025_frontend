@@ -34,20 +34,74 @@ export default async function Home() {
     `${process.env.NEXT_PUBLIC_URL_BE}/api/row-projects?${searchParams}`
   );
   const projectData = projectRow?.data;
+  let mergeProject = [];
+
+  projectData.forEach((item) => {
+    mergeProject = mergeProject.concat(item.attributes.project);
+  });
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[80px] px-[40px]">
-      <div className="grid grid-cols-4 ">
-        <div></div>
-        <div></div>
-        <div className="col-span-2">
-          <h1 className=" text-[20px]  tablet:text-[30px] leading-5 tablet:leading-9">
+      <div className="relative">
+        <h1 className="text-[18vw]">hi, helloooo</h1>
+        <div className="hidden desktop:block absolute right-[28%] top-[20%]">
+          <Image src="/bethany-avatar.png" width={400} height={300} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-12">
+        <div className="col-span-7">
+          <h1 className=" text-[18px]  tablet:text-[30px] leading-5 tablet:leading-9">
             {" "}
             {title?.data?.attributes?.title}
           </h1>
         </div>
       </div>
-      {projectData.map((section, index) => (
+
+      <div className="py-12">
+        {mergeProject.map((item, key) => {
+          let slug = item?.slug;
+          console.log(item);
+          return (
+            <>
+              <div key={key}>
+                <div>
+                  <h4 className="text-[30px]">
+                    {item.title || ""} /{" "}
+                    <span className="text-[#A0A0A0]">
+                      Studio: {item.studio || ""}
+                    </span>{" "}
+                    /{" "}
+                    <span className="text-[#A0A0A0]">
+                      {item.subTitle4 || ""}
+                    </span>
+                  </h4>
+                </div>
+                <div className="grid grid-cols-6 gap-4 py-4">
+                  {item?.groupMedia?.data?.map((item, key) => {
+                    return (
+                      <>
+                        <div className="col-span-1" key={key}>
+                          <Link href={`/${slug}`}>
+                            <Image
+                              src={baseUrl + item?.attributes?.url}
+                              width={1000}
+                              height={1000}
+                              alt="Bethany"
+                            />
+                          </Link>
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </div>
+
+      {/* {projectData.map((section, index) => (
         <div
           key={index}
           className="flex flex-col tablet:flex-row gap-0 tablet:gap-6 mt-0 tablet:mt-[70px]"
@@ -108,7 +162,7 @@ export default async function Home() {
             );
           })}
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

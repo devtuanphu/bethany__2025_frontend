@@ -71,15 +71,15 @@ const page = async ({ params }) => {
 
         <div className="mx-auto space-y-4 flex flex-col laptop:flex-row gap-0 laptop:gap-6">
           <div className="w-full laptop:w-1/2">
-            <div className="text-[30px] tablet:text-[38px] laptop:text-[44px] text-bold">
-              {detailProject.title}
+            <div className="text-[30px] tablet:text-[30px] laptop:text-[44px] text-bold">
+              <h2> {detailProject.title}</h2>
             </div>
             <ul className=" text-gray-300 space-y-1 w-full mt-6">
               <li>
                 <div className="flex flex-col tablet:flex-row gap-0 tablet:gap-4 text-[20px]">
                   <div className="w-1/4 font-semibold leading-7">Year:</div>
                   <div className="w-3/4 leading-7 text-base tablet:text-[20px]">
-                    {detailProject.year}
+                    <h3>{detailProject.year}</h3>
                   </div>
                 </div>
               </li>
