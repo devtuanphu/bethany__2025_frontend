@@ -1,10 +1,19 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname(); // Lấy đường dẫn hiện tại
+
+  const hideFooterPages = ["/about"];
+  const shouldHideFooter = hideFooterPages.includes(pathname); // Kiểm tra đường dẫn
+
   return (
     <div
-      className="flex flex-row gap-0 tablet:gap-2 justify-between px-[40px] py-[28px] mt-[20px] min-h-[180px] flex-wrap"
+      className={`flex flex-row gap-0 tablet:gap-2 justify-between px-[40px] py-[28px] mt-[20px] min-h-[180px] flex-wrap ${
+        shouldHideFooter ? "hidden" : ""
+      } `}
       id="contact"
     >
       <div className="flex flex-col w-1/2 tablet:w-auto pr-1 tablet:pr-0">
@@ -57,7 +66,7 @@ const Footer = () => {
           BETHANY-TRAN
         </div>
         <div className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold ml-auto">
-          © 2024 - 2025
+          © 2025 - 2026
         </div>
       </div>
     </div>

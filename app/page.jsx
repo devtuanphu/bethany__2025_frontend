@@ -41,7 +41,7 @@ export default async function Home() {
   });
 
   return (
-    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[80px] px-[40px]">
+    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
       <div className="relative">
         <h1 className="text-[18vw]">hi, helloooo</h1>
         <div className="hidden desktop:block absolute right-[28%] top-[20%]">
@@ -61,7 +61,7 @@ export default async function Home() {
       <div className="py-12">
         {mergeProject.map((item, key) => {
           let slug = item?.slug;
-          console.log(item);
+
           return (
             <>
               <div key={key}>
@@ -77,23 +77,22 @@ export default async function Home() {
                     </span>
                   </h4>
                 </div>
-                <div className="grid grid-cols-6 gap-4 py-4">
-                  {item?.groupMedia?.data?.map((item, key) => {
-                    return (
-                      <>
-                        <div className="col-span-1" key={key}>
-                          <Link href={`/${slug}`}>
-                            <Image
-                              src={baseUrl + item?.attributes?.url}
-                              width={1000}
-                              height={1000}
-                              alt="Bethany"
-                            />
-                          </Link>
-                        </div>
-                      </>
-                    );
-                  })}
+                <div className="grid grid-cols-4 gap-4 py-4">
+                  {item?.groupMedia?.data?.map((item, key) => (
+                    <div
+                      className="mobile:col-span-4 desktop:col-span-1"
+                      key={key}
+                    >
+                      <Link href={`/${slug}`} passHref>
+                        <Image
+                          src={baseUrl + item?.attributes?.url}
+                          width={1000}
+                          height={1000}
+                          alt="Bethany"
+                        />
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </div>
             </>

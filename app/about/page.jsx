@@ -2,11 +2,12 @@
 import HoverLink from "@/components/hoverLink";
 const hoverData = {
   "Bethany Tran": "/bethany-tran.png",
-  "graphic, motion & digital design": "/digital-graphic.gif",
-  "ZURU EDGE": "/zuruedgeteam.gif",
-  designing: "/designing.png",
-  animating: "/animating.png",
-  eager: "/bethany-eager.png",
+  "graphic, motion, and digital design": "/digital-graphic.gif",
+  teams: "/zuruedgeteam.gif",
+  design: "/designing.png",
+  design2: "/animating.png",
+  hunt: "/bethany-eager.png",
+  snack: "/bethany-eager.png",
 };
 
 export default function AboutPage() {
@@ -21,48 +22,54 @@ export default function AboutPage() {
             width={200}
             height={234}
           />{" "}
-          a creative designer from Aotearoa, New Zealand, specialising in{" "}
+          a designer specialising in{" "}
           <HoverLink
-            label="graphic, motion & digital design"
-            mediaSrc={hoverData["graphic, motion & digital design"]}
+            label="graphic, motion, and digital design"
+            mediaSrc={hoverData["graphic, motion, and digital design"]}
             width={260}
             height={180}
           />
-          . I've been fortunate to kickstart my career as an in-house junior
-          graphic designer at{" "}
+          . I bring a versatile creative background experience bouncing around
+          FMCG brands, in-house{" "}
           <HoverLink
-            label="ZURU EDGE"
-            mediaSrc={hoverData["ZURU EDGE"]}
+            label="teams"
+            mediaSrc={hoverData["teams"]}
             width={340}
             height={100}
           />{" "}
-          from 2023 to 2024. During my time there, I've enjoyed diving into
-          projects, from{" "}
+          , and agencies. I love making{" "}
           <HoverLink
-            label="designing"
-            mediaSrc={hoverData["designing"]}
+            label="design"
+            mediaSrc={hoverData["design"]}
             width={180}
             height={100}
           />{" "}
-          digital media assets to{" "}
-          <HoverLink
-            label="animating"
-            mediaSrc={hoverData["animating"]}
-            width={80}
-            height={80}
-          />
-          content and everything in between!
+          that looks sharp, tells a story, and (hopefully) makes people feel
+          something
         </div>
         <div>
-          As I look forward to the next chapter of my professional journey, I am{" "}
+          I{" "}
           <HoverLink
-            label="eager"
-            mediaSrc={hoverData["eager"]}
+            label="design"
+            mediaSrc={hoverData["design2"]}
             width={200}
             height={216}
           />{" "}
-          to continue applying my passion and expertise to create compelling
-          visual experiences that leave a lasting impact.
+          by day,{" "}
+          <HoverLink
+            label="hunt"
+            mediaSrc={hoverData["hunt"]}
+            width={200}
+            height={216}
+          />{" "}
+          for the perfect phone wallpaper by night, and{" "}
+          <HoverLink
+            label="snack"
+            mediaSrc={hoverData["snack"]}
+            width={200}
+            height={216}
+          />{" "}
+          in between.
         </div>
       </div>
     </div>

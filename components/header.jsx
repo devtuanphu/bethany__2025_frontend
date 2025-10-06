@@ -32,24 +32,24 @@ const Header = () => {
 
   return (
     <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4">
-      <div className="text-[33px]">
+      <div className="text-[31px]">
         <Link href="/">Bethany Tran</Link>
       </div>
 
-      <div className="text-[33px] hidden tablet:block">
+      <div className="text-[31px] hidden tablet:block">
         <Link href="/">Work</Link>, <Link href="/about">Info</Link>{" "}
       </div>
 
-      <div className="hidden tablet:block text-[33px]">
+      <div className="hidden tablet:block text-[31px]">
         <div className="flex gap-4">
           <span>Auckland</span>
-          <span className=" text-[33px] pr-8">36°51'S/174°46'E</span>
+          <span className=" text-[31px] pr-8">36°51'S/174°46'E</span>
           <span>{aucklandTime} </span>
         </div>
       </div>
 
       <div className="flex justify-end">
-        <div className="flex gap-4 items-center">
+        <Link href="#contact" className="flex gap-4 items-center">
           <span className=" text-[30px]">Say</span>
           <div>
             <Image
@@ -59,7 +59,7 @@ const Header = () => {
               height={65} // lấy đúng height gốc
             />
           </div>
-        </div>
+        </Link>
       </div>
 
       <button
