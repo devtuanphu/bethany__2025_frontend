@@ -1,13 +1,13 @@
 "use client";
 import HoverLink from "@/components/hoverLink";
 const hoverData = {
-  "Bethany Tran": "/bethany-tran.png",
-  "graphic, motion, and digital design": "/digital-graphic.gif",
-  teams: "/zuruedgeteam.gif",
-  design: "/designing.png",
-  design2: "/animating.png",
-  hunt: "/bethany-eager.png",
-  snack: "/bethany-eager.png",
+  "Bethany Tran": "/bethany-tran2.png",
+  "graphic, motion, and digital design": "/graphic & motion & digital.gif",
+  teams: "/teams.gif",
+  design: "/design (lần 1).png",
+  design2: "/design (lần 2).png",
+  hunt: "/hunt.png",
+  snack: "/snack.png",
 };
 
 export default function AboutPage() {
