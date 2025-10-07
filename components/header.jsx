@@ -31,7 +31,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4">
+    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white">
       <div className="text-[31px]">
         <Link href="/">Bethany Tran</Link>
       </div>
@@ -49,11 +49,14 @@ const Header = () => {
       </div>
 
       <div className="flex justify-end">
-        <Link href="#contact" className="flex gap-4 items-center">
+        <Link
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=BETHANYNAMTRAN%40GMAIL.COM"
+          className="flex gap-4 items-center"
+        >
           <span className=" text-[30px]">Say</span>
           <div>
             <Image
-              src="/hand.png"
+              src="/new-hand.png"
               alt="hand"
               width={65} // lấy đúng width gốc
               height={65} // lấy đúng height gốc

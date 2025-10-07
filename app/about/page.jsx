@@ -26,8 +26,8 @@ export default function AboutPage() {
           <HoverLink
             label="graphic, motion, and digital design"
             mediaSrc={hoverData["graphic, motion, and digital design"]}
-            width={260}
-            height={180}
+            width={340}
+            height={100}
           />
           . I bring a versatile creative background experience bouncing around
           FMCG brands, in-house{" "}
@@ -41,12 +41,13 @@ export default function AboutPage() {
           <HoverLink
             label="design"
             mediaSrc={hoverData["design"]}
-            width={180}
-            height={100}
+            width={340}
+            height={180}
           />{" "}
           that looks sharp, tells a story, and (hopefully) makes people feel
           something
         </div>
+        <br />
         <div>
           I{" "}
           <HoverLink

@@ -42,10 +42,20 @@ export default async function Home() {
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
-      <div className="relative">
-        <h1 className="text-[18vw]">hi, helloooo</h1>
-        <div className="hidden desktop:block absolute right-[28%] top-[20%]">
-          <Image src="/bethany-avatar.png" width={400} height={300} />
+      <div className="relative group">
+        <h1 className="text-[18vw] opacity-50 transition-opacity duration-300 group-hover:opacity-100">
+          hi, helloooo
+        </h1>
+
+        <div className="desktop:absolute right-[28%] top-[20%] opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
+          <video
+            src="/avatar-mini.webm"
+            width={400}
+            height={300}
+            autoPlay
+            loop
+            muted
+          ></video>
         </div>
       </div>
 
