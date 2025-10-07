@@ -56,7 +56,7 @@ const Header = () => {
           <span className=" text-[30px]">Say</span>
           <div>
             <Image
-              src="/new-hand.png"
+              src="/hand.png"
               alt="hand"
               width={65} // lấy đúng width gốc
               height={65} // lấy đúng height gốc
