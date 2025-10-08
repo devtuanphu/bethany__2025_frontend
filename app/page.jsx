@@ -68,13 +68,13 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="py-12">
+      <div className="py-12 flex flex-col gap-10">
         {mergeProject.map((item, key) => {
           let slug = item?.slug;
 
           return (
             <>
-              <div key={key}>
+              <div key={key} className="">
                 <div>
                   <h4 className="text-[27px]">
                     {item.title || ""} /{" "}
