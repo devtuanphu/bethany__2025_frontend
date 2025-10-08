@@ -41,9 +41,9 @@ export default async function Home() {
   });
 
   return (
-    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
+    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[50px] px-[40px]">
       <div className="relative group">
-        <h1 className="text-[18vw] opacity-50 transition-opacity duration-300 group-hover:opacity-100">
+        <h1 className="text-[18vw]  transition-opacity duration-300 ">
           hi, helloooo
         </h1>
 
@@ -76,7 +76,7 @@ export default async function Home() {
             <>
               <div key={key}>
                 <div>
-                  <h4 className="text-[30px]">
+                  <h4 className="text-[27px]">
                     {item.title || ""} /{" "}
                     <span className="text-[#A0A0A0]">
                       Studio: {item.studio || ""}
@@ -97,7 +97,7 @@ export default async function Home() {
                         <Image
                           src={baseUrl + item?.attributes?.url}
                           width={1000}
-                          height={1000}
+                          height={100}
                           alt="Bethany"
                         />
                       </Link>

@@ -35,7 +35,7 @@ export default function HoverLink({
             alt={`Preview for ${label}`}
             width={width}
             height={height}
-            className="object-cover w-full h-full"
+            className=""
           />
         </div>
       )}

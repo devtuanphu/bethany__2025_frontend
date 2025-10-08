@@ -31,23 +31,22 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white">
+    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-3 border-b border-white py-4">
       <div className="text-[31px]">
         <Link href="/">Bethany Tran</Link>
       </div>
-
       <div className="text-[31px] hidden tablet:block">
         <Link href="/">Work</Link>, <Link href="/about">Info</Link>{" "}
       </div>
-
       <div className="hidden tablet:block text-[31px]">
         <div className="flex gap-4">
           <span>Auckland</span>
-          <span className=" text-[31px] pr-8">36°51'S/174°46'E</span>
+          <span className=" text-[31px] ">36°51'S/174°46'E</span>
           <span>{aucklandTime} </span>
         </div>
       </div>
 
+      {/* 
       <div className="flex justify-end">
         <Link
           href="https://mail.google.com/mail/?view=cm&fs=1&to=BETHANYNAMTRAN%40GMAIL.COM"
@@ -63,7 +62,7 @@ const Header = () => {
             />
           </div>
         </Link>
-      </div>
+      </div> */}
 
       <button
         onClick={toggleMenu}
