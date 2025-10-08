@@ -18,7 +18,7 @@ export default function HoverLink({
         href="#"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        className="text-lime-400 hover:no-underline relative"
+        className="text-lime-400 hover:no-underline relative cursor-pointer"
       >
         {label}
       </Link>
