@@ -31,7 +31,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-3 border-b border-white py-4">
+    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white py-4">
       <div className="text-[31px]">
         <Link href="/">Bethany Tran</Link>
       </div>
@@ -42,27 +42,12 @@ const Header = () => {
         <div className="flex gap-4">
           <span>Auckland</span>
           <span className=" text-[31px] ">36°51'S/174°46'E</span>
-          <span>{aucklandTime} </span>
         </div>
       </div>
 
-      {/* 
-      <div className="flex justify-end">
-        <Link
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=BETHANYNAMTRAN%40GMAIL.COM"
-          className="flex gap-4 items-center"
-        >
-          <span className=" text-[30px]">Say</span>
-          <div>
-            <Image
-              src="/hand.png"
-              alt="hand"
-              width={65} // lấy đúng width gốc
-              height={65} // lấy đúng height gốc
-            />
-          </div>
-        </Link>
-      </div> */}
+      <div className="hidden tablet:flex justify-end text-[31px] ">
+        <span>{aucklandTime} </span>
+      </div>
 
       <button
         onClick={toggleMenu}

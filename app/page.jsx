@@ -47,11 +47,11 @@ export default async function Home() {
           hi, helloooo
         </h1>
 
-        <div className="desktop:absolute right-[28%] top-[20%] opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div className="desktop:absolute right-[15%] top-[16%] opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
           <video
             src="/avatar-mini.webm"
-            width={400}
-            height={300}
+            width={600}
+            height={400}
             autoPlay
             loop
             muted

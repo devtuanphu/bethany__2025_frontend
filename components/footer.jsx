@@ -11,12 +11,12 @@ const Footer = () => {
 
   return (
     <div
-      className={`flex flex-row gap-0 tablet:gap-2 justify-between px-[40px] py-[28px] mt-[20px] min-h-[180px] flex-wrap ${
+      className={` px-[40px] py-[28px] mt-[20px] min-h-[180px] grid grid-cols-4 ${
         shouldHideFooter ? "hidden" : ""
       } `}
       id="contact"
     >
-      <div className="flex flex-col w-1/2 tablet:w-auto pr-1 tablet:pr-0">
+      <div className="flex flex-col  tablet:w-auto pr-1 tablet:pr-0">
         <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">
           CONTACT
         </div>
@@ -36,7 +36,7 @@ const Footer = () => {
           (+64) 211 465 868
         </Link>
       </div>
-      <div className="flex flex-col w-1/2 tablet:w-auto pl-1 tablet:pl-0">
+      <div className="flex flex-col  tablet:w-auto pl-1 tablet:pl-0">
         <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">
           MORE INFO
         </div>
@@ -53,7 +53,7 @@ const Footer = () => {
           RESUME
         </Link>
       </div>
-      <div className="flex flex-col w-1/2 tablet:w-auto pr-1 tablet:pr-0">
+      <div className="flex flex-col  tablet:w-auto pr-1 tablet:pr-0">
         <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">
           LOCATION
         </div>
@@ -61,8 +61,8 @@ const Footer = () => {
           TAMAKI MAKAURAU
         </div>
       </div>
-      <div className="flex flex-col w-1/2 tablet:w-auto pl-1 tablet:pl-0">
-        <div className="text-[18px] tablet:text-[22px] font-semibold mb-1">
+      <div className="flex flex-col  tablet:w-auto pl-1 tablet:pl-0">
+        <div className="text-[18px]  ml-auto tablet:text-[22px] font-semibold mb-1">
           BETHANY-TRAN
         </div>
         <div className="text-[12px] tablet:text-[14px] laptop:text-[17px] font-semibold ml-auto">

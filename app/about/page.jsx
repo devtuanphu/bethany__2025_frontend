@@ -19,30 +19,30 @@ export default function AboutPage() {
           <HoverLink
             label="Bethany Tran"
             mediaSrc={hoverData["Bethany Tran"]}
-            width={340}
-            height={234}
+            width={550}
+            height={550}
           />{" "}
           a designer specialising in{" "}
           <HoverLink
             label="graphic, motion, and digital design"
             mediaSrc={hoverData["graphic, motion, and digital design"]}
-            width={340}
-            height={100}
+            width={550}
+            height={550}
           />
           . I bring a versatile creative background experience bouncing around
           FMCG brands, in-house{" "}
           <HoverLink
             label="teams"
             mediaSrc={hoverData["teams"]}
-            width={340}
-            height={100}
+            width={550}
+            height={550}
           />{" "}
           , and agencies. I love making{" "}
           <HoverLink
             label="design"
             mediaSrc={hoverData["design"]}
-            width={340}
-            height={180}
+            width={550}
+            height={550}
           />{" "}
           that looks sharp, tells a story, and (hopefully) makes people feel
           something
@@ -53,22 +53,22 @@ export default function AboutPage() {
           <HoverLink
             label="design"
             mediaSrc={hoverData["design2"]}
-            width={200}
-            height={216}
+            width={550}
+            height={550}
           />{" "}
           by day,{" "}
           <HoverLink
             label="hunt"
             mediaSrc={hoverData["hunt"]}
-            width={200}
-            height={216}
+            width={550}
+            height={550}
           />{" "}
           for the perfect phone wallpaper by night, and{" "}
           <HoverLink
             label="snack"
             mediaSrc={hoverData["snack"]}
-            width={200}
-            height={216}
+            width={550}
+            height={550}
           />{" "}
           in between.
         </div>
