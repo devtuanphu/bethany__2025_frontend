@@ -61,8 +61,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-12">
         <div className="col-span-7">
-          <h1 className=" text-[18px]  tablet:text-[30px] leading-5 tablet:leading-9">
-            {" "}
+          <h1 className=" text-[18px]  tablet:text-[28px] leading-5 tablet:leading-9">
             {title?.data?.attributes?.title}
           </h1>
         </div>
@@ -76,7 +75,7 @@ export default async function Home() {
             <>
               <div key={key} className="">
                 <div>
-                  <h4 className="text-[27px]">
+                  <h4 className="text-[25px]">
                     {item.title || ""} /{" "}
                     <span className="text-[#A0A0A0]">
                       Studio: {item.studio || ""}
