@@ -92,23 +92,45 @@ export default async function Home() {
                   </h4>
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-4">
-                  {item?.groupMediaHome?.data?.map((item, key) => (
-                    <div
-                      className="mobile:col-span-6 desktop:col-span-1"
-                      key={key}
-                    >
-                      <Link href={`/${slug}`} passHref>
-                        <Image
-                          src={baseUrl + item?.attributes?.url}
-                          width={700}
-                          height={100}
-                          alt="Bethany"
-                          className="w-[100%] h-auto"
-                          priority
-                        />
-                      </Link>
-                    </div>
-                  ))}
+                  {item?.groupMediaHome?.data?.map((itemMedia, key) => {
+                    return (
+                      <div
+                        className="mobile:col-span-6 desktop:col-span-1"
+                        key={key}
+                      >
+                        {itemMedia?.attributes?.url?.endsWith(".mp4") ? (
+                          <Link href={`/${slug}`} passHref>
+                            <video
+                              src={baseUrl + itemMedia?.attributes?.url}
+                              controls={false}
+                              autoPlay={true}
+                              className="w-full"
+                              muted
+                              loop
+                              loading="lazy"
+                            />
+                          </Link>
+                        ) : (
+                          <Link href={`/${slug}`} passHref>
+                            <Image
+                              src={baseUrl + itemMedia?.attributes?.url}
+                              width={
+                                itemMedia?.attributes?.formats?.medium?.width ||
+                                700
+                              }
+                              height={
+                                itemMedia?.attributes?.formats?.medium?.heght ||
+                                100
+                              }
+                              alt="Bethany"
+                              className="w-[100%] h-auto"
+                              priority
+                            />
+                          </Link>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </>

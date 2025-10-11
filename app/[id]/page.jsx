@@ -31,6 +31,7 @@ const page = async ({ params }) => {
 
   const groupMedia = detailProject?.groupMedia;
   const firstMedia = groupMedia && groupMedia.length > 0 ? groupMedia[0] : null;
+
   const heightMedia = firstMedia?.height;
   const widthMedia = firstMedia?.width;
   const isVideo =
@@ -47,7 +48,7 @@ const page = async ({ params }) => {
   return (
     <>
       <div className="bg-black text-white px-[40px] py-6 space-y-10 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
-        {firstMedia ? (
+        {/* {firstMedia ? (
           isVideo ? (
             <video
               src={process.env.NEXT_PUBLIC_URL_BE + firstMedia.url}
@@ -67,7 +68,33 @@ const page = async ({ params }) => {
           )
         ) : (
           <div>No media available</div>
-        )}
+        )} */}
+
+        {groupMedia &&
+          groupMedia.map((item, key) => {
+            return (
+              <div key={key}>
+                {item?.mime?.startsWith("video") ? (
+                  <video
+                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
+                    controls
+                    autoPlay={true}
+                    className="w-full rounded-xl"
+                    muted
+                    loop
+                  />
+                ) : (
+                  <Image
+                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
+                    alt={item.alternativeText || "media"}
+                    width={item.width} // lấy đúng width gốc
+                    height={item.height} // lấy đúng height gốc
+                    className="w-full h-auto rounded-xl"
+                  />
+                )}
+              </div>
+            );
+          })}
 
         <div className="mx-auto space-y-4 flex flex-col laptop:flex-row gap-0 laptop:gap-6">
           <div className="w-full laptop:w-1/2">
