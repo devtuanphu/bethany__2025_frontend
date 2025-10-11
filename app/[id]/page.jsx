@@ -48,7 +48,7 @@ const page = async ({ params }) => {
   return (
     <>
       <div className="bg-black text-white px-[40px] py-6 space-y-10 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
-        {/* {firstMedia ? (
+        {firstMedia ? (
           isVideo ? (
             <video
               src={process.env.NEXT_PUBLIC_URL_BE + firstMedia.url}
@@ -68,7 +68,7 @@ const page = async ({ params }) => {
           )
         ) : (
           <div>No media available</div>
-        )} */}
+        )}
 
         <div className="mx-auto space-y-4 flex flex-col laptop:flex-row gap-0 laptop:gap-6">
           <div className="w-full laptop:w-1/2">
