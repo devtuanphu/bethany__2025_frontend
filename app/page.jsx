@@ -3,7 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const searchData = {
-  populate: ["project", "project.groupMedia", "project.avatar"].toString(),
+  populate: [
+    "project",
+    "project.groupMedia",
+    "project.avatar",
+    "project.groupMediaHome",
+  ].toString(),
 };
 
 const searchParams = new URLSearchParams(searchData).toString();
@@ -86,10 +91,10 @@ export default async function Home() {
                     </span>
                   </h4>
                 </div>
-                <div className="grid grid-cols-4 gap-4 py-4">
-                  {item?.groupMedia?.data?.map((item, key) => (
+                <div className="grid grid-cols-6 gap-4 py-4">
+                  {item?.groupMediaHome?.data?.map((item, key) => (
                     <div
-                      className="mobile:col-span-4 desktop:col-span-1"
+                      className="mobile:col-span-6 desktop:col-span-1"
                       key={key}
                     >
                       <Link href={`/${slug}`} passHref>
