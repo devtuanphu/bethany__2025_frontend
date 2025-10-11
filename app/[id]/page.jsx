@@ -70,31 +70,6 @@ const page = async ({ params }) => {
           <div>No media available</div>
         )} */}
 
-        {groupMedia &&
-          groupMedia.map((item, key) => {
-            return (
-              <div key={key}>
-                {item?.mime?.startsWith("video") ? (
-                  <video
-                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
-                    controls
-                    autoPlay={true}
-                    className="w-full rounded-xl"
-                    muted
-                  />
-                ) : (
-                  <Image
-                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
-                    alt={item.alternativeText || "media"}
-                    width={item.width} // lấy đúng width gốc
-                    height={item.height} // lấy đúng height gốc
-                    className="w-full h-auto rounded-xl"
-                  />
-                )}
-              </div>
-            );
-          })}
-
         <div className="mx-auto space-y-4 flex flex-col laptop:flex-row gap-0 laptop:gap-6">
           <div className="w-full laptop:w-1/2">
             <div className="text-[30px] tablet:text-[30px] laptop:text-[44px] text-bold">
@@ -152,7 +127,7 @@ const page = async ({ params }) => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 gap-4">
+        {/* <div className="grid grid-cols-1 gap-4">
           {groupMedia.slice(1).map((media, index) => {
             const isVideo =
               media.mime?.startsWith("video") || media.url?.endsWith(".mp4");
@@ -182,7 +157,32 @@ const page = async ({ params }) => {
               );
             }
           })}
-        </div>
+        </div> */}
+
+        {groupMedia &&
+          groupMedia.slice(1).map((item, key) => {
+            return (
+              <div key={key}>
+                {item?.mime?.startsWith("video") ? (
+                  <video
+                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
+                    controls
+                    autoPlay={true}
+                    className="w-full rounded-xl"
+                    muted
+                  />
+                ) : (
+                  <Image
+                    src={process.env.NEXT_PUBLIC_URL_BE + item.url}
+                    alt={item.alternativeText || "media"}
+                    width={item.width} // lấy đúng width gốc
+                    height={item.height} // lấy đúng height gốc
+                    className="w-full h-auto rounded-xl"
+                  />
+                )}
+              </div>
+            );
+          })}
       </div>
     </>
   );
