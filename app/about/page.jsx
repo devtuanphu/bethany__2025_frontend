@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <div className=" bg-black text-white pt-[80px] tablet:pt-[120px] laptop:pt-[100px] px-[40px] pb-[40px] overflow-x-hidden">
       <div className="text-[30px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
-        <div>
+        <div className="leading-[50px]">
           Hello! My name is{" "}
           <HoverLink
             label="Bethany Tran"
@@ -48,7 +48,7 @@ export default function AboutPage() {
           something
         </div>
         <br />
-        <div>
+        <div className="leading-[50px]">
           I{" "}
           <HoverLink
             label="design"
