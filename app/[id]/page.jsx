@@ -81,7 +81,6 @@ const page = async ({ params }) => {
                     autoPlay={true}
                     className="w-full rounded-xl"
                     muted
-                    loop
                   />
                 ) : (
                   <Image
