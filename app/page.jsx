@@ -100,9 +100,11 @@ export default async function Home() {
                       <Link href={`/${slug}`} passHref>
                         <Image
                           src={baseUrl + item?.attributes?.url}
-                          width={1000}
+                          width={700}
                           height={100}
                           alt="Bethany"
+                          className="w-[100%] h-auto"
+                          priority
                         />
                       </Link>
                     </div>

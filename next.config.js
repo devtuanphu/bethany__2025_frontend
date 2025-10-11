@@ -5,7 +5,7 @@ const nextConfig = {
     NEXT_PUBLIC_TOKEN_DEV: process.env.NEXT_PUBLIC_TOKEN_DEV,
   },
   images: {
-    domains: ["res.cloudinary.com", "localhost", "127.0.0.1"],
+    remotePatterns: ["res.cloudinary.com", "localhost", "127.0.0.1"],
     remotePatterns: [
       {
         protocol: "http", // Chắc chắn sử dụng HTTP, vì Strapi đang chạy trên HTTP (local)
