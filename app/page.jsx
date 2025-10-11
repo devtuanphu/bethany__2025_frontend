@@ -98,7 +98,8 @@ export default async function Home() {
                         className="mobile:col-span-6 desktop:col-span-1"
                         key={key}
                       >
-                        {itemMedia?.attributes?.url?.endsWith(".mp4") ? (
+                        {itemMedia?.attributes?.url?.endsWith(".mp4") ||
+                        itemMedia?.attributes?.url?.endsWith(".webm") ? (
                           <Link href={`/${slug}`} passHref>
                             <video
                               src={baseUrl + itemMedia?.attributes?.url}
