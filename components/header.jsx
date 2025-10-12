@@ -31,8 +31,8 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 flex-wrap min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white py-1">
-      <div className="text-[29px]">
+    <div className="text-white fixed top-0 left-0 right-0 min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white py-1">
+      <div className="col-span-2 desktop:col-span-1 text-[29px]">
         <Link href="/">Bethany Tran</Link>
       </div>
       <div className="text-[29px] hidden tablet:block">
@@ -49,19 +49,21 @@ const Header = () => {
         <span>{aucklandTime} </span>
       </div>
 
-      <button
-        onClick={toggleMenu}
-        className="z-50 text-[30px] absolute top-0 right-0 bottom-0 p-4 tablet:p-8 transition-transform duration-300 active:scale-95 tablet:hidden"
-        aria-label="Toggle Menu"
-      >
-        <div className="transition-opacity duration-300">
-          {isMenuOpen ? (
-            <VscChromeClose className="animate-fade-in" />
-          ) : (
-            <VscMenu className="animate-fade-in" />
-          )}
-        </div>
-      </button>
+      <div className="flex justify-end col-span-2 desktop:col-span-1 ">
+        <button
+          onClick={toggleMenu}
+          className="z-50 text-[30px]   tablet:p-8 transition-transform duration-300 active:scale-95 tablet:hidden col-span-2 desktop:col-span-1"
+          aria-label="Toggle Menu"
+        >
+          <div className="transition-opacity duration-300">
+            {isMenuOpen ? (
+              <VscChromeClose className="animate-fade-in" />
+            ) : (
+              <VscMenu className="animate-fade-in" />
+            )}
+          </div>
+        </button>
+      </div>
 
       <Navbar isOpen={isMenuOpen} />
     </div>

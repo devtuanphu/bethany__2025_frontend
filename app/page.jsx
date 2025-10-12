@@ -47,8 +47,8 @@ export default async function Home() {
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[50px] px-[40px]">
-      <div className="relative group">
-        <h1 className="text-[18vw]  transition-opacity duration-300 ">
+      <div className="hidden desktop:relative group">
+        <h1 className="text-[18vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
           hi, helloooo
         </h1>
 
@@ -65,8 +65,8 @@ export default async function Home() {
       </div>
 
       <div className="grid grid-cols-12">
-        <div className="col-span-7">
-          <h1 className=" text-[18px]  tablet:text-[28px] leading-5 tablet:leading-9">
+        <div className="col-span-12 desktop:col-span-7 pt-[10px] desktop:pt-0">
+          <h1 className="text-[20px] desktop:text-[18px]  tablet:text-[28px] leading-5 tablet:leading-9">
             {title?.data?.attributes?.title}
           </h1>
         </div>
@@ -80,7 +80,7 @@ export default async function Home() {
             <>
               <div key={key} className="">
                 <div>
-                  <h4 className="text-[25px]">
+                  <h4 className="text-[16px] desktop:text-[25px]">
                     {item.title || ""} /{" "}
                     <span className="text-[#A0A0A0]">
                       Studio: {item.studio || ""}
@@ -105,11 +105,20 @@ export default async function Home() {
                               src={baseUrl + itemMedia?.attributes?.url}
                               controls={false}
                               autoPlay={true}
-                              className="w-full"
+                              className=" w-full"
                               muted
                               loop
                               loading="lazy"
                             />
+                            {/* <video
+                              src={baseUrl + itemMedia?.attributes?.url}
+                              controls={false}
+                              autoPlay={false}
+                              className=" desktop:hidden w-full"
+                              muted
+                              loop
+                              loading="lazy"
+                            /> */}
                           </Link>
                         ) : (
                           <Link href={`/${slug}`} passHref>
