@@ -47,7 +47,7 @@ export default async function Home() {
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[50px] px-[40px]">
-      <div className="hidden desktop:relative group">
+      <div className="hidden desktop:block relative group">
         <h1 className="text-[18vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
           hi, helloooo
         </h1>
