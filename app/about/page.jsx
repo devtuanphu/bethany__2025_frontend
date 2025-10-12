@@ -48,7 +48,7 @@ export default function AboutPage() {
           something
         </div>
         <br />
-        <div className="leading-[30px] desktop:leading-[50px]">
+        <div className="leading-[20px] desktop:leading-[50px]">
           I{" "}
           <HoverLink
             label="design"

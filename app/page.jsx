@@ -46,7 +46,7 @@ export default async function Home() {
   });
 
   return (
-    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[50px] px-[40px]">
+    <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
       <div className="hidden desktop:block relative group">
         <h1 className="text-[18vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
           hi, helloooo
@@ -72,7 +72,7 @@ export default async function Home() {
         </div>
       </div>
       <div className="pt-12 pb-2">
-        <h3 className="font-bold text-[#17FD5F] text-[18px] block desktop:hidden ">
+        <h3 className="font-bold text-[#17FD5F] text-[18px] desktop:text-[30px]">
           *Selected work
         </h3>
       </div>
