@@ -75,20 +75,20 @@ const page = async ({ params }) => {
             <div className="text-[44px] text-bold">
               <h2> {detailProject.title}</h2>
             </div>
-            <ul className="  space-y-6 w-full mt-6">
+            <ul className="space-y-6 desktop:space-y-1 w-full mt-6">
               <li>
                 <div className="flex flex-col tablet:flex-row gap-2 tablet:gap-4 text-lg">
-                  <div className="w-1/4 font-semibold leading-6 text-[22px]">
+                  <div className="w-1/4 font-semibold leading-6 text-[22px] desktop:text-base">
                     Year:
                   </div>
-                  <div className="w-3/4 leading-6 text-base tablet:text-lg">
+                  <div className="w-3/4 leading-6 text-base tablet:text-base">
                     <h3>{detailProject.year}</h3>
                   </div>
                 </div>
               </li>
               <li>
                 <div className="flex flex-col tablet:flex-row gap-2 tablet:gap-4 text-lg">
-                  <div className="w-1/4 font-semibold leading-6 text-[22px]">
+                  <div className="w-1/4 font-semibold leading-6 text-[22px] desktop:text-base">
                     Studio:
                   </div>
                   <div className="w-3/4 leading-6 text-base tablet:text-lg">
@@ -98,7 +98,7 @@ const page = async ({ params }) => {
               </li>
               <li>
                 <div className="flex flex-col tablet:flex-row gap-2 tablet:gap-4 text-lg">
-                  <div className="w-1/4 font-semibold leading-6 text-[22px]">
+                  <div className="w-1/4 font-semibold leading-6 text-[22px] desktop:text-base">
                     Role:
                   </div>
                   <div className="w-3/4 leading-6 text-base tablet:text-lg">
@@ -108,7 +108,7 @@ const page = async ({ params }) => {
               </li>
               <li>
                 <div className="flex flex-col tablet:flex-row gap-2 tablet:gap-4 text-lg">
-                  <div className="w-1/4 font-semibold leading-6 text-[22px]">
+                  <div className="w-1/4 font-semibold leading-6 text-[22px] desktop:text-base">
                     Responsibilities:
                   </div>
                   <div className="w-3/4 leading-6 text-base tablet:text-lg">
@@ -118,7 +118,7 @@ const page = async ({ params }) => {
               </li>
               <li>
                 <div className="flex flex-col tablet:flex-row gap-2 tablet:gap-4 text-lg">
-                  <div className="w-1/4 font-semibold leading-6 text-[22px]">
+                  <div className="w-1/4 font-semibold leading-6 text-[22px] desktop:text-base">
                     Credits:
                   </div>
                   <div className="w-3/4 leading-6 text-base tablet:text-lg">
@@ -129,7 +129,7 @@ const page = async ({ params }) => {
             </ul>
           </div>
           {detailProject.description && (
-            <div className="text-base  text-gray-100 w-full laptop:w-1/2 pt-2">
+            <div className="text-base desktop:text-lg  text-gray-100 w-full laptop:w-1/2 pt-2">
               {detailProject.description}
             </div>
           )}
