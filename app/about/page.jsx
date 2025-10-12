@@ -13,8 +13,8 @@ const hoverData = {
 export default function AboutPage() {
   return (
     <div className=" bg-black text-white pt-[80px] tablet:pt-[120px] laptop:pt-[100px] px-[40px] pb-[40px] overflow-x-hidden">
-      <div className="text-[30px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
-        <div className="leading-[30px] desktop:leading-[50px]">
+      <div className="text-[20px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
+        <div className="leading-[20px] desktop:leading-[50px]">
           Hello! My name is{" "}
           <HoverLink
             label="Bethany Tran"
