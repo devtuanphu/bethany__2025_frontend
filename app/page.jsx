@@ -72,7 +72,9 @@ export default async function Home() {
         </div>
       </div>
       <div className="pt-12 pb-2">
-        <h3 className="font-bold text-[#17FD5F] text-[18px]">*Selected work</h3>
+        <h3 className="font-bold text-[#17FD5F] text-[18px] block desktop:hidden ">
+          *Selected work
+        </h3>
       </div>
 
       <div className="flex flex-col gap-10">
