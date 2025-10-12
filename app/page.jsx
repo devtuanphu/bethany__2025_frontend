@@ -66,7 +66,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-12">
         <div className="col-span-12 desktop:col-span-7 pt-[10px] desktop:pt-0">
-          <h1 className="text-[22px] desktop:text-[30px]  tablet:text-[28px] leading-5 tablet:leading-9">
+          <h1 className="text-[22px] desktop:text-[32px]  tablet:text-[28px] leading-5 tablet:leading-9">
             {title?.data?.attributes?.title}
           </h1>
         </div>
