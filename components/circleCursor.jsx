@@ -55,7 +55,7 @@ const CircleCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className={`fixed w-[30px] h-[30px] bg-lime-300 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] transition-opacity duration-200 ${
+      className={`hidden desktop:block fixed w-[30px] h-[30px] bg-lime-300 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] transition-opacity duration-200 ${
         isVisible ? "opacity-50" : "opacity-0"
       }`}
     />

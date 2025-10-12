@@ -31,7 +31,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="text-white fixed top-0 left-0 right-0 min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-white py-1">
+    <div className="text-white fixed top-0 left-0 right-0 min-h-[70px] px-[40px] items-center bg-black z-50 grid grid-cols-4 border-b border-[#757272] py-1">
       <div className="col-span-2 desktop:col-span-1 text-[29px]">
         <Link href="/">Bethany Tran</Link>
       </div>
