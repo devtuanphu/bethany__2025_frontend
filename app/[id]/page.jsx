@@ -4,31 +4,47 @@ import React from "react";
 
 async function fetchWithToken(endpoint) {
   const token = process.env.NEXT_PUBLIC_TOKEN_DEV;
+  
+  // Add timeout to prevent hanging requests
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+  
+  try {
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      // Cache for 60 seconds - revalidate every minute
+      next: { revalidate: 60 },
+      signal: controller.signal,
+    });
 
-  const response = await fetch(endpoint, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    // Cache for 60 seconds - revalidate every minute
-    next: { revalidate: 60 },
-  });
+    clearTimeout(timeoutId);
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      throw new Error('Request timeout - server took too long to respond');
+    }
+    throw error;
   }
-
-  return response.json();
 }
 
 const page = async ({ params }) => {
   const { id } = params;
   const baseUrl = process.env.NEXT_PUBLIC_URL_BE || "";
 
-  const detailProject = await fetchWithToken(
-    `${process.env.NEXT_PUBLIC_URL_BE}/api/row-project/project/${id}`
-  );
+  try {
+    const detailProject = await fetchWithToken(
+      `${process.env.NEXT_PUBLIC_URL_BE}/api/row-project/project/${id}`
+    );
 
   const groupMedia = detailProject?.groupMedia;
   const firstMedia = groupMedia && groupMedia.length > 0 ? groupMedia[0] : null;
@@ -190,8 +206,8 @@ const page = async ({ params }) => {
                   <Image
                     src={process.env.NEXT_PUBLIC_URL_BE + item.url}
                     alt={item.alternativeText || "media"}
-                    width={item.width} // lấy đúng width gốc
-                    height={item.height} // lấy đúng height gốc
+                    width={item.width}
+                    height={item.height}
                     className="w-full h-auto rounded-xl"
                     loading="lazy"
                   />
@@ -201,7 +217,18 @@ const page = async ({ params }) => {
           })}
       </div>
     </>
-  );
+    );
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    return (
+      <div className="bg-black text-white px-[40px] py-6 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
+        <h1 className="text-2xl mb-4">Project Not Found</h1>
+        <p className="text-red-400">
+          Unable to load project. Please try again later.
+        </p>
+      </div>
+    );
+  }
 };
 
 export default page;

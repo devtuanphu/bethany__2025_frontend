@@ -5,24 +5,28 @@ const nextConfig = {
     NEXT_PUBLIC_TOKEN_DEV: process.env.NEXT_PUBLIC_TOKEN_DEV,
   },
   images: {
-    remotePatterns: ["res.cloudinary.com", "localhost", "127.0.0.1"],
     remotePatterns: [
       {
-        protocol: "http", // Chắc chắn sử dụng HTTP, vì Strapi đang chạy trên HTTP (local)
-        hostname: "localhost", // Địa chỉ hostname của Strapi
-        port: "1337", // Port mà Strapi đang chạy
-        pathname: "/uploads/**", // Đảm bảo các đường dẫn hình ảnh trong Strapi sẽ được nhận diện
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
+        pathname: "/uploads/**",
       },
       {
-        protocol: "http", // Chắc chắn sử dụng HTTP, vì Strapi đang chạy trên HTTP (local)
-        hostname: "127.0.0.1", // Địa chỉ hostname của Strapi
-        port: "1337", // Port mà Strapi đang chạy
-        pathname: "/uploads/**", // Đảm bảo các đường dẫn hình ảnh trong Strapi sẽ được nhận diện
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "1337",
+        pathname: "/uploads/**",
       },
       {
-        protocol: "https", // Chắc chắn sử dụng HTTP, vì Strapi đang chạy trên HTTP (local)
-        hostname: "admin.bethany.co.nz", // Địa chỉ hostname của Strapi
-        pathname: "/uploads/**", // Đảm bảo các đường dẫn hình ảnh trong Strapi sẽ được nhận diện
+        protocol: "https",
+        hostname: "admin.bethany.co.nz",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
       },
     ],
   },
