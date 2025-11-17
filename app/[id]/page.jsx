@@ -11,7 +11,8 @@ async function fetchWithToken(endpoint) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store", // Đảm bảo không cache dữ liệu
+    // Cache for 60 seconds - revalidate every minute
+    next: { revalidate: 60 },
   });
 
   if (!response.ok) {
@@ -54,6 +55,8 @@ const page = async ({ params }) => {
               src={process.env.NEXT_PUBLIC_URL_BE + firstMedia.url}
               controls
               autoPlay={true}
+              playsInline
+              preload="auto"
               className="w-full rounded-xl"
               muted
             />
@@ -64,6 +67,7 @@ const page = async ({ params }) => {
               width={widthMedia} // lấy đúng width gốc
               height={heightMedia} // lấy đúng height gốc
               className="w-full h-auto rounded-xl"
+              priority
             />
           )
         ) : (
@@ -175,9 +179,12 @@ const page = async ({ params }) => {
                   <video
                     src={process.env.NEXT_PUBLIC_URL_BE + item.url}
                     controls
-                    autoPlay={true}
+                    autoPlay={false}
+                    playsInline
+                    preload="none"
                     className="w-full rounded-xl"
                     muted
+                    loading="lazy"
                   />
                 ) : (
                   <Image
@@ -186,6 +193,7 @@ const page = async ({ params }) => {
                     width={item.width} // lấy đúng width gốc
                     height={item.height} // lấy đúng height gốc
                     className="w-full h-auto rounded-xl"
+                    loading="lazy"
                   />
                 )}
               </div>

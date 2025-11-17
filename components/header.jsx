@@ -5,27 +5,44 @@ import React, { useState, useEffect } from "react";
 import { VscMenu, VscChromeClose } from "react-icons/vsc";
 import Navbar from "./navbar";
 import Image from "next/image";
+
+// Helper function to get Auckland time - optimized
+// Cache the formatter to avoid recreating it every time
+let cachedFormatter = null;
+const getAucklandTime = () => {
+  const now = new Date();
+  
+  // Cache the formatter for better performance
+  if (!cachedFormatter) {
+    cachedFormatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Pacific/Auckland",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+  }
+  
+  return cachedFormatter.format(now);
+};
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [aucklandTime, setAucklandTime] = useState("");
+  // Start with placeholder to avoid hydration mismatch
+  // Server and client must render the same initial value
+  const [aucklandTime, setAucklandTime] = useState("--:--:--");
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   useEffect(() => {
+    // Update immediately on mount (client-side only)
+    setAucklandTime(getAucklandTime());
+    
     const updateClock = () => {
-      const now = new Date();
-      const options = {
-        timeZone: "Pacific/Auckland",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = now.toLocaleTimeString("en-GB", options);
-      setAucklandTime(timeString);
+      setAucklandTime(getAucklandTime());
     };
 
-    updateClock();
+    // Update every second
     const interval = setInterval(updateClock, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -46,7 +63,7 @@ const Header = () => {
       </div>
 
       <div className="hidden tablet:flex justify-end text-[31px] ">
-        <span>{aucklandTime} </span>
+        <span suppressHydrationWarning>{aucklandTime}</span>
       </div>
 
       <div className="flex justify-end col-span-2 desktop:col-span-1 ">

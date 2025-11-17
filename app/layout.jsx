@@ -2,6 +2,14 @@ import "@/styles/globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CircleCursor from "@/components/circleCursor";
+import localFont from "next/font/local";
+
+const helveticaFont = localFont({
+  src: "../public/fonts/HelveticaNowDisplay-Medium.ttf",
+  variable: "--font-helvetica",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata = {
   title: "BETHANY-TRAN",
@@ -11,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={helveticaFont.variable}>
         <Header />
         {children}
         <CircleCursor />

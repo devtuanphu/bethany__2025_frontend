@@ -1,6 +1,7 @@
 "use server";
 import Image from "next/image";
 import Link from "next/link";
+import AvatarHoverSection from "@/components/avatarHoverSection";
 
 const searchData = {
   populate: [
@@ -21,7 +22,8 @@ async function fetchWithToken(endpoint) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store",
+    // Cache for 60 seconds - revalidate every minute
+    next: { revalidate: 60 },
   });
 
   if (!response.ok) {
@@ -32,12 +34,13 @@ async function fetchWithToken(endpoint) {
 }
 export default async function Home() {
   const baseUrl = process.env.NEXT_PUBLIC_URL_BE || "";
-  const title = await fetchWithToken(
-    `${process.env.NEXT_PUBLIC_URL_BE}/api/title-home`
-  );
-  const projectRow = await fetchWithToken(
-    `${process.env.NEXT_PUBLIC_URL_BE}/api/row-projects?${searchParams}`
-  );
+  
+  // Fetch API calls in parallel instead of sequentially
+  const [title, projectRow] = await Promise.all([
+    fetchWithToken(`${process.env.NEXT_PUBLIC_URL_BE}/api/title-home`),
+    fetchWithToken(`${process.env.NEXT_PUBLIC_URL_BE}/api/row-projects?${searchParams}`),
+  ]);
+  
   const projectData = projectRow?.data;
   let mergeProject = [];
 
@@ -47,43 +50,29 @@ export default async function Home() {
 
   return (
     <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
-      <div className="hidden desktop:block relative group">
-        <h1 className="text-[18vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
-          hi, helloooo
-        </h1>
-
-        <div className="desktop:absolute right-[15%] top-[16%] opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
-          <video
-            src="/avatar-mini.webm"
-            width={600}
-            height={400}
-            autoPlay
-            loop
-            muted
-          ></video>
-        </div>
-      </div>
+      <AvatarHoverSection />
 
       <div className="grid grid-cols-12">
         <div className="col-span-12 desktop:col-span-7 pt-[10px] desktop:pt-0">
-          <h1 className="text-[22px] desktop:text-[32px]  tablet:text-[28px] leading-7 tablet:leading-9">
+          <h1 className="text-[22px] desktop:text-[30px]  tablet:text-[28px] leading-7 tablet:leading-9">
             {title?.data?.attributes?.title}
           </h1>
         </div>
       </div>
       <div className="pt-10 pb-4">
-        <h3 className="font-bold text-[#17FD5F] text-[18px] desktop:text-[30px]">
+        <h3 className="font-bold text-[#17FD5F] text-[16px] desktop:text-[30px]">
           *Selected Work
         </h3>
       </div>
 
       <div className="flex flex-col gap-10">
-        {mergeProject.map((item, key) => {
+        {mergeProject.map((item, projectIndex) => {
           let slug = item?.slug;
+          const isFirstProject = projectIndex === 0;
 
           return (
             <>
-              <div key={key} className="">
+              <div key={projectIndex} className="">
                 <div>
                   <h4 className="text-[12px] desktop:text-[25px]">
                     {item.title || ""} /{" "}
@@ -97,36 +86,33 @@ export default async function Home() {
                   </h4>
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-4">
-                  {item?.groupMediaHome?.data?.map((itemMedia, key) => {
+                  {item?.groupMediaHome?.data?.map((itemMedia, mediaIndex) => {
+                    // Only prioritize first 3 media items of first project (above the fold)
+                    const isAboveFold = isFirstProject && mediaIndex < 3;
+                    const isVideo =
+                      itemMedia?.attributes?.url?.endsWith(".mp4") ||
+                      itemMedia?.attributes?.url?.endsWith(".webm");
+
                     return (
                       <div
                         className="mobile:col-span-6 desktop:col-span-1"
-                        key={key}
+                        key={mediaIndex}
                       >
-                        {itemMedia?.attributes?.url?.endsWith(".mp4") ||
-                        itemMedia?.attributes?.url?.endsWith(".webm") ? (
-                          <Link href={`/${slug}`} passHref>
+                        {isVideo ? (
+                          <Link href={`/${slug}`} passHref prefetch>
                             <video
                               src={baseUrl + itemMedia?.attributes?.url}
                               controls={false}
                               autoPlay={true}
-                              className=" w-full  rounded-xl"
+                              playsInline
+                              preload={isAboveFold ? "auto" : "metadata"}
+                              className="w-full rounded-xl"
                               muted
                               loop
-                              loading="lazy"
                             />
-                            {/* <video
-                              src={baseUrl + itemMedia?.attributes?.url}
-                              controls={false}
-                              autoPlay={false}
-                              className=" desktop:hidden w-full"
-                              muted
-                              loop
-                              loading="lazy"
-                            /> */}
                           </Link>
                         ) : (
-                          <Link href={`/${slug}`} passHref>
+                          <Link href={`/${slug}`} passHref prefetch>
                             <Image
                               src={baseUrl + itemMedia?.attributes?.url}
                               width={
@@ -139,7 +125,9 @@ export default async function Home() {
                               }
                               alt="Bethany"
                               className="w-[100%] h-auto rounded-xl"
-                              priority
+                              priority={isAboveFold}
+                              loading={isAboveFold ? "eager" : "lazy"}
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 16vw"
                             />
                           </Link>
                         )}
