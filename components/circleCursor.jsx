@@ -7,28 +7,50 @@ const CircleCursor = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    let rafId = null;
+    let lastX = 0;
+    let lastY = 0;
+
     const moveCursor = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-
-      if (cursorRef.current) {
-        cursorRef.current.style.left = `${x + 3}px`;
-        cursorRef.current.style.top = `${y + 6}px`;
-
-        const isNearTop = y < 4;
-        const isNearRight = x > window.innerWidth - 20;
-        const isNearBottom = y > window.innerHeight - 8;
-
-        if (isNearTop || isNearRight || isNearBottom) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
+      // Use requestAnimationFrame for smooth animation
+      if (rafId) {
+        cancelAnimationFrame(rafId);
       }
+
+      rafId = requestAnimationFrame(() => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        if (cursorRef.current) {
+          cursorRef.current.style.left = `${x + 3}px`;
+          cursorRef.current.style.top = `${y + 6}px`;
+
+          // Only check visibility if position changed significantly
+          if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
+            const isNearTop = y < 4;
+            const isNearRight = x > window.innerWidth - 20;
+            const isNearBottom = y > window.innerHeight - 8;
+
+            if (isNearTop || isNearRight || isNearBottom) {
+              setIsVisible(false);
+            } else {
+              setIsVisible(true);
+            }
+
+            lastX = x;
+            lastY = y;
+          }
+        }
+      });
     };
 
-    document.addEventListener("mousemove", moveCursor);
-    return () => document.removeEventListener("mousemove", moveCursor);
+    document.addEventListener("mousemove", moveCursor, { passive: true });
+    return () => {
+      document.removeEventListener("mousemove", moveCursor);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { VscMenu, VscChromeClose } from "react-icons/vsc";
 import Navbar from "./navbar";
 import Image from "next/image";
@@ -39,12 +39,28 @@ const Header = () => {
     setAucklandTime(getAucklandTime());
     
     const updateClock = () => {
-      setAucklandTime(getAucklandTime());
+      // Only update if tab is visible to save resources
+      if (document.visibilityState === 'visible') {
+        setAucklandTime(getAucklandTime());
+      }
     };
 
     // Update every second
     const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
+    
+    // Also update when tab becomes visible
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setAucklandTime(getAucklandTime());
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   return (
@@ -87,4 +103,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

@@ -16,8 +16,8 @@ async function fetchWithToken(endpoint) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      // Cache for 60 seconds - revalidate every minute
-      next: { revalidate: 60 },
+      // Cache for 5 minutes - revalidate every 5 minutes to reduce server load
+      next: { revalidate: 300 },
       signal: controller.signal,
     });
 

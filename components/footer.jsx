@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { memo } from "react";
 import { usePathname } from "next/navigation";
 
 const Footer = () => {
@@ -73,4 +73,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

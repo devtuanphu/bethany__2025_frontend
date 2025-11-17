@@ -1,8 +1,19 @@
 "use server";
 import Image from "next/image";
 import Link from "next/link";
-import AvatarHoverSection from "@/components/avatarHoverSection";
+import dynamic from "next/dynamic";
 
+// Lazy load AvatarHoverSection - không cần thiết ngay
+const AvatarHoverSection = dynamic(() => import("@/components/avatarHoverSection"), {
+  ssr: true,
+});
+
+// Lazy load VideoWrapper for client-side video handling
+const VideoWrapper = dynamic(() => import("@/components/videoWrapper"), {
+  ssr: false,
+});
+
+// Move outside component to avoid recreating on every render
 const searchData = {
   populate: [
     "project",
@@ -28,8 +39,8 @@ async function fetchWithToken(endpoint) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      // Cache for 60 seconds - revalidate every minute
-      next: { revalidate: 60 },
+      // Cache for 5 minutes - revalidate every 5 minutes to reduce server load
+      next: { revalidate: 300 },
       signal: controller.signal,
     });
 
@@ -120,20 +131,16 @@ export default async function Home() {
                           key={mediaIndex}
                         >
                           {isVideo ? (
-                            <Link href={`/${slug}`} passHref prefetch>
-                              <video
+                            <Link href={`/${slug}`} passHref prefetch={false}>
+                              <VideoWrapper
                                 src={baseUrl + itemMedia?.attributes?.url}
-                                controls={false}
                                 autoPlay={true}
-                                playsInline
-                                preload={isAboveFold ? "auto" : "metadata"}
                                 className="w-full rounded-xl"
-                                muted
-                                loop
+                                isAboveFold={isAboveFold}
                               />
                             </Link>
                           ) : (
-                            <Link href={`/${slug}`} passHref prefetch>
+                            <Link href={`/${slug}`} passHref prefetch={false}>
                               <Image
                                 src={baseUrl + itemMedia?.attributes?.url}
                                 width={

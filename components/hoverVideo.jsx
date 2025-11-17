@@ -15,9 +15,8 @@ export default function HoverVideo({ src, className = "" }) {
     const handleMouseEnter = () => {
       if (video && video.readyState >= 2) {
         // readyState 2 = HAVE_CURRENT_DATA, 3 = HAVE_FUTURE_DATA, 4 = HAVE_ENOUGH_DATA
-        video.play().catch((e) => {
-          // Ignore autoplay errors
-          console.log("Video play error:", e);
+        video.play().catch(() => {
+          // Ignore autoplay errors silently
         });
       } else {
         // If video not ready, wait for it

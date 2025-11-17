@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { memo } from "react";
 
 const Navbar = ({ isOpen }) => {
   return (
@@ -21,4 +21,4 @@ const Navbar = ({ isOpen }) => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
