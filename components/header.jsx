@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState, useEffect, memo } from "react";
 import { VscMenu, VscChromeClose } from "react-icons/vsc";
 import Navbar from "./navbar";
-import Image from "next/image";
 
 // Helper function to get Auckland time - optimized
 // Cache the formatter to avoid recreating it every time

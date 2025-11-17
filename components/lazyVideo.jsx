@@ -49,9 +49,8 @@ export default function LazyVideo({ src, autoPlay = false, className = "" }) {
 
     // Auto play only if in viewport and autoPlay is true
     if (isInView && autoPlay) {
-      video.play().catch((e) => {
-        // Ignore autoplay errors
-        console.log("Video autoplay error:", e);
+      video.play().catch(() => {
+        // Ignore autoplay errors silently
       });
     } else if (!isInView) {
       video.pause();

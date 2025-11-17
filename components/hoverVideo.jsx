@@ -22,7 +22,7 @@ export default function HoverVideo({ src, className = "" }) {
         // If video not ready, wait for it
         video.addEventListener("loadeddata", () => {
           video.play().catch((e) => {
-            console.log("Video play error:", e);
+            // Ignore autoplay errors silently
           });
         }, { once: true });
       }

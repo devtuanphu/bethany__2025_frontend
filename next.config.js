@@ -4,7 +4,15 @@ const nextConfig = {
     NEXT_PUBLIC_URL_BE: process.env.NEXT_PUBLIC_URL_BE,
     NEXT_PUBLIC_TOKEN_DEV: process.env.NEXT_PUBLIC_TOKEN_DEV,
   },
+  // Production optimizations
+  compress: true,
+  swcMinify: true,
+  poweredByHeader: false,
+  // Optimize images
   images: {
+    // Use webp format for better compression (requires sharp in production)
+    formats: ["image/webp"],
+    minimumCacheTTL: 60,
     remotePatterns: [
       {
         protocol: "http",
@@ -29,6 +37,10 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  // Reduce bundle size
+  experimental: {
+    optimizePackageImports: ['react-icons'],
   },
 };
 

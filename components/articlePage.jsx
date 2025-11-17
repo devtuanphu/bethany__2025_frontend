@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import axios from "axios";
-import { articles } from "@/lib/articles";
 
 export default function ArticlePage() {
   const params = useParams();
@@ -13,22 +11,16 @@ export default function ArticlePage() {
   useEffect(() => {
     if (!slug) return;
 
-    axios
-      .get("/api/articles.json")
-      .then((res) => {
-        const found = res.data.find((item) => item.slug === slug);
+    // Use fetch instead of axios to reduce bundle size
+    fetch("/api/articles.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const found = data.find((item) => item.slug === slug);
         setArticle(found);
       })
       .catch(() => {
-        let fallback = null;
-        for (const group of articles) {
-          const found = group.items.find((item) => item.slug === slug);
-          if (found) {
-            fallback = found;
-            break;
-          }
-        }
-        setArticle(fallback);
+        // Fallback to null if API fails
+        setArticle(null);
       });
   }, [slug]);
 

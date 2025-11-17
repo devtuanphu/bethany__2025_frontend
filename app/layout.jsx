@@ -17,6 +17,7 @@ const helveticaFont = localFont({
 });
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL_BE || 'https://bethany.co.nz'),
   title: "BETHANY-TRAN | Portfolio",
   description: "Portfolio of Bethany Tran - Graphic, Motion, and Digital Designer specializing in FMCG brands, in-house teams, and agencies.",
   keywords: "Bethany Tran, Graphic Designer, Motion Designer, Digital Designer, Portfolio",
