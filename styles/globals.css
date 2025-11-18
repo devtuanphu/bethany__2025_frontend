@@ -23,3 +23,143 @@ a {
 a:hover {
   color: #17fd5f;
 }
+
+/* Fix Safari video background transparency issue */
+video {
+  background-color: transparent !important;
+  background: transparent !important;
+  -webkit-background-size: cover;
+  background-size: cover;
+  /* Force hardware acceleration for better rendering */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  /* Remove any default background Safari might add */
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  /* Ensure no background shows through */
+  isolation: isolate;
+}
+
+/* Ensure video containers also have transparent backgrounds */
+video::before,
+video::after {
+  background-color: transparent !important;
+  content: none;
+  display: none;
+}
+
+/* Fix for video container divs */
+div:has(> video),
+div video {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Safari-specific fix for video transparency */
+@supports (-webkit-appearance: none) {
+  video {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    /* Force transparency in Safari */
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  
+  /* Additional Safari fix for WebM with alpha channel */
+  video[src*=".webm"],
+  video[src*="webm"] {
+    background-color: transparent !important;
+    background: transparent !important;
+    /* Try to force Safari to respect alpha */
+    -webkit-background-composite: source-over;
+    background-composite: source-over;
+  }
+  
+  /* Fix for video containers in Safari */
+  div:has(> video[src*=".webm"]),
+  div:has(> video[src*="webm"]) {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+}
+
+/* Additional fix for absolute positioned video containers */
+.absolute video,
+[class*="absolute"] video {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Force transparency on all parent elements that might have background */
+div:has(video[src*=".webm"]),
+div:has(video[src*="webm"]) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Safari WebKit specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* This targets Safari specifically */
+  video[src*=".webm"],
+  video[src*="webm"] {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-background-size: 0 0 !important;
+    background-size: 0 0 !important;
+    /* Remove any potential background layer */
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Force Safari to use alpha channel */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    /* Remove any default background color Safari might add */
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+    /* Use object-fit to help with transparency */
+    object-fit: contain !important;
+    /* Remove borders and outlines */
+    border: none !important;
+    outline: none !important;
+  }
+  
+  /* Ensure parent containers are also transparent */
+  div:has(> video[src*=".webm"]),
+  div:has(> video[src*="webm"]) {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-background-size: 0 0 !important;
+    background-size: 0 0 !important;
+  }
+  
+  /* Fix for all video elements in Safari */
+  video {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-background-size: 0 0 !important;
+    background-size: 0 0 !important;
+    object-fit: contain !important;
+  }
+  
+  /* Use CSS to create a mask effect for Safari */
+  .safari-video-overlay {
+    display: none !important;
+  }
+  
+  /* Force all parent containers to be transparent */
+  div:has(video[src*=".webm"]),
+  div:has(video[src*="webm"]) {
+    background-color: transparent !important;
+    background: transparent !important;
+    background-image: none !important;
+  }
+  
+  /* Fix for absolute positioned containers */
+  [class*="absolute"]:has(video[src*=".webm"]),
+  [class*="absolute"]:has(video[src*="webm"]) {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+}

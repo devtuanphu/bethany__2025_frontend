@@ -53,9 +53,19 @@ async function fetchWithToken(endpoint) {
     return response.json();
   } catch (error) {
     clearTimeout(timeoutId);
-    if (error.name === 'AbortError') {
-      throw new Error('Request timeout - server took too long to respond');
+    
+    // Handle timeout and network errors gracefully
+    if (error.name === 'AbortError' || 
+        error.cause?.code === 'ETIMEDOUT' || 
+        error.cause?.code === 'EHOSTUNREACH' ||
+        error.message?.includes('timeout') ||
+        error.message?.includes('terminated')) {
+      // Return null for timeout/network errors instead of throwing
+      // This prevents excessive error logging
+      return null;
     }
+    
+    // Only throw for other errors
     throw error;
   }
 }
@@ -68,6 +78,11 @@ export default async function Home() {
       fetchWithToken(`${process.env.NEXT_PUBLIC_URL_BE}/api/title-home`),
       fetchWithToken(`${process.env.NEXT_PUBLIC_URL_BE}/api/row-projects?${searchParams}`),
     ]);
+    
+    // Handle timeout/network errors - if API returns null, show fallback
+    if (!title && !projectRow) {
+      throw new Error('All API requests failed');
+    }
     
     const projectData = projectRow?.data || [];
     let mergeProject = [];
@@ -173,7 +188,17 @@ export default async function Home() {
       </div>
     );
   } catch (error) {
-    console.error("Error fetching data:", error);
+    // Only log unexpected errors (not timeout or network errors)
+    const isExpectedError = 
+      error.message?.includes('timeout') ||
+      error.message?.includes('terminated') ||
+      error.cause?.code === 'ETIMEDOUT' ||
+      error.cause?.code === 'EHOSTUNREACH';
+    
+    if (!isExpectedError) {
+      console.error("Error fetching data:", error);
+    }
+    
     // Return fallback UI instead of crashing
     return (
       <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
@@ -182,7 +207,7 @@ export default async function Home() {
             Welcome
           </h1>
           <p className="mt-4 text-red-400">
-            Unable to load content. Please try again later.
+            Unable to load content. Please check your connection and try again later.
           </p>
         </div>
       </div>

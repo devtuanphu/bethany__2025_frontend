@@ -5,62 +5,75 @@ import React, { useEffect, useRef, useState } from "react";
 const CircleCursor = () => {
   const cursorRef = useRef(null);
   const [isVisible, setIsVisible] = useState(true);
+  const lastPositionRef = useRef({ x: 0, y: 0 });
+  const isVisibleRef = useRef(true);
 
+  // Smooth cursor movement using requestAnimationFrame
   useEffect(() => {
-    let rafId = null;
-    let lastX = 0;
-    let lastY = 0;
+    if (typeof window === 'undefined') return;
 
-    const moveCursor = (e) => {
-      // Use requestAnimationFrame for smooth animation
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+    let animationFrameId = null;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    const animate = () => {
+      // Smooth interpolation for better performance
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
       }
 
-      rafId = requestAnimationFrame(() => {
-        const x = e.clientX;
-        const y = e.clientY;
-
-        if (cursorRef.current) {
-          cursorRef.current.style.left = `${x + 3}px`;
-          cursorRef.current.style.top = `${y + 6}px`;
-
-          // Only check visibility if position changed significantly
-          if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
-            const isNearTop = y < 4;
-            const isNearRight = x > window.innerWidth - 20;
-            const isNearBottom = y > window.innerHeight - 8;
-
-            if (isNearTop || isNearRight || isNearBottom) {
-              setIsVisible(false);
-            } else {
-              setIsVisible(true);
-            }
-
-            lastX = x;
-            lastY = y;
-          }
-        }
-      });
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    document.addEventListener("mousemove", moveCursor, { passive: true });
+    animate();
+
+    const handleMouseMove = (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+
+      // Check visibility only when position changes significantly
+      const dx = Math.abs(e.clientX - lastPositionRef.current.x);
+      const dy = Math.abs(e.clientY - lastPositionRef.current.y);
+
+      if (dx > 5 || dy > 5) {
+        const isNearEdge = 
+          e.clientY < 4 || 
+          e.clientX > window.innerWidth - 20 || 
+          e.clientY > window.innerHeight - 8;
+
+        if (isVisibleRef.current !== !isNearEdge) {
+          isVisibleRef.current = !isNearEdge;
+          setIsVisible(!isNearEdge);
+        }
+
+        lastPositionRef.current = { x: e.clientX, y: e.clientY };
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
+
     return () => {
-      document.removeEventListener("mousemove", moveCursor);
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+      document.removeEventListener("mousemove", handleMouseMove);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
       }
     };
   }, []);
 
+  // Click animation effect
   useEffect(() => {
-    const clickEffect = () => {
+    const handleClick = () => {
       if (cursorRef.current) {
         cursorRef.current.animate(
           [
-            { transform: "translate(-50%, -50%) scale(1)" },
-            { transform: "translate(-50%, -50%) scale(1.2)" },
-            { transform: "translate(-50%, -50%) scale(1)" },
+            { transform: `translate(${lastPositionRef.current.x}px, ${lastPositionRef.current.y}px) translate(-50%, -50%) scale(1)` },
+            { transform: `translate(${lastPositionRef.current.x}px, ${lastPositionRef.current.y}px) translate(-50%, -50%) scale(1.2)` },
+            { transform: `translate(${lastPositionRef.current.x}px, ${lastPositionRef.current.y}px) translate(-50%, -50%) scale(1)` },
           ],
           {
             duration: 300,
@@ -70,16 +83,21 @@ const CircleCursor = () => {
       }
     };
 
-    document.addEventListener("click", clickEffect);
-    return () => document.removeEventListener("click", clickEffect);
+    document.addEventListener("click", handleClick, { passive: true });
+    return () => document.removeEventListener("click", handleClick);
   }, []);
 
   return (
     <div
       ref={cursorRef}
-      className={`hidden desktop:block fixed w-[30px] h-[30px] bg-lime-300 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] transition-opacity duration-200 ${
-        isVisible ? "opacity-50" : "opacity-0"
-      }`}
+      className="hidden desktop:block fixed w-[30px] h-[30px] bg-lime-300 rounded-full pointer-events-none z-[9999] transition-opacity duration-200"
+      style={{ 
+        left: 0,
+        top: 0,
+        willChange: 'transform',
+        opacity: isVisible ? 0.5 : 0,
+        transform: 'translate(-50%, -50%)'
+      }}
     />
   );
 };

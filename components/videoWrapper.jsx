@@ -57,6 +57,13 @@ function VideoWrapper({ src, autoPlay, className, isAboveFold }) {
       className={className}
       muted
       loop
+      style={{ 
+        backgroundColor: 'transparent', 
+        background: 'transparent',
+        backgroundImage: 'none',
+        backgroundSize: '0 0',
+        WebkitBackgroundSize: '0 0'
+      }}
     />
   );
 }

@@ -68,6 +68,7 @@ export default function LazyVideo({ src, autoPlay = false, className = "" }) {
       className={className}
       muted
       loop
+      style={{ backgroundColor: 'transparent', background: 'transparent' }}
     />
   );
 }

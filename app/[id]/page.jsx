@@ -24,15 +24,29 @@ async function fetchWithToken(endpoint) {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
+      // Return null for 404 (not found) instead of throwing error
+      if (response.status === 404) {
+        return null;
+      }
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     return response.json();
   } catch (error) {
     clearTimeout(timeoutId);
-    if (error.name === 'AbortError') {
-      throw new Error('Request timeout - server took too long to respond');
+    
+    // Handle timeout and network errors gracefully
+    if (error.name === 'AbortError' || 
+        error.cause?.code === 'ETIMEDOUT' || 
+        error.cause?.code === 'EHOSTUNREACH' ||
+        error.message?.includes('timeout') ||
+        error.message?.includes('terminated')) {
+      // Return null for timeout/network errors instead of throwing
+      // This prevents excessive error logging
+      return null;
     }
+    
+    // Only throw for other errors
     throw error;
   }
 }
@@ -45,6 +59,18 @@ const page = async ({ params }) => {
     const detailProject = await fetchWithToken(
       `${process.env.NEXT_PUBLIC_URL_BE}/api/row-project/project/${id}`
     );
+
+    // Handle 404 - project not found
+    if (!detailProject) {
+      return (
+        <div className="bg-black text-white px-[40px] py-6 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
+          <h1 className="text-2xl mb-4">Project Not Found</h1>
+          <p className="text-red-400">
+            The project you're looking for doesn't exist or has been removed.
+          </p>
+        </div>
+      );
+    }
 
   const groupMedia = detailProject?.groupMedia;
   const firstMedia = groupMedia && groupMedia.length > 0 ? groupMedia[0] : null;
@@ -219,12 +245,23 @@ const page = async ({ params }) => {
     </>
     );
   } catch (error) {
-    console.error("Error fetching project:", error);
+    // Only log unexpected errors (not timeout, network, or 404 errors)
+    const isExpectedError = 
+      error.message?.includes('404') ||
+      error.message?.includes('timeout') ||
+      error.message?.includes('terminated') ||
+      error.cause?.code === 'ETIMEDOUT' ||
+      error.cause?.code === 'EHOSTUNREACH';
+    
+    if (!isExpectedError) {
+      console.error("Error fetching project:", error);
+    }
+    
     return (
       <div className="bg-black text-white px-[40px] py-6 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
-        <h1 className="text-2xl mb-4">Project Not Found</h1>
+        <h1 className="text-2xl mb-4">Unable to Load Project</h1>
         <p className="text-red-400">
-          Unable to load project. Please try again later.
+          The server is not responding. Please check your connection and try again later.
         </p>
       </div>
     );
