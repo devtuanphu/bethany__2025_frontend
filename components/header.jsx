@@ -67,24 +67,24 @@ const Header = () => {
       <div className="col-span-2 desktop:col-span-1 text-[29px]">
         <Link href="/">Bethany Tran</Link>
       </div>
-      <div className="text-[29px] hidden tablet:block">
+      <div className="text-[29px] hidden desktop:block">
         <Link href="/">Work</Link>, <Link href="/about">Info</Link>{" "}
       </div>
-      <div className="hidden tablet:block text-[29px]">
+      <div className="hidden desktop:block text-[29px]">
         <div className="flex gap-4">
           <span>Auckland</span>
           <span className=" text-[29px] ">36°51'S/174°46'E</span>
         </div>
       </div>
 
-      <div className="hidden tablet:flex justify-end text-[31px] ">
+      <div className="hidden desktop:flex justify-end text-[31px] ">
         <span suppressHydrationWarning>{aucklandTime}</span>
       </div>
 
       <div className="flex justify-end col-span-2 desktop:col-span-1 ">
         <button
           onClick={toggleMenu}
-          className="z-50 text-[30px]   tablet:p-8 transition-transform duration-300 active:scale-95 tablet:hidden col-span-2 desktop:col-span-1"
+          className="z-50 text-[30px] tablet:p-8 transition-transform duration-300 active:scale-95 desktop:hidden col-span-2 desktop:col-span-1"
           aria-label="Toggle Menu"
         >
           <div className="transition-opacity duration-300">
