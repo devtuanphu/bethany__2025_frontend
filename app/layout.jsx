@@ -2,16 +2,16 @@ import "@/styles/globals.css";
 import dynamic from "next/dynamic";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 
 // Lazy load CircleCursor - chỉ cần trên desktop
 const CircleCursor = dynamic(() => import("@/components/circleCursor"), {
   ssr: false,
 });
 
-const helveticaFont = localFont({
-  src: "../public/fonts/HelveticaNowDisplay-Medium.ttf",
-  variable: "--font-helvetica",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
   preload: true,
 });
@@ -31,7 +31,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={helveticaFont.variable}>
+      <body className={inter.variable}>
         <Header />
         {children}
         <CircleCursor />

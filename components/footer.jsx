@@ -1,11 +1,19 @@
 "use client";
 import Link from "next/link";
 import React, { memo } from "react";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isAboutPage = pathname === "/about";
+
   return (
     <div
-      className="px-[40px] py-[28px] mt-[20px] min-h-[180px] grid grid-cols-4"
+      className={`px-[40px] ${isAboutPage ? "pt-[28px] pb-[28px]" : "py-[28px]"} min-h-[180px] grid grid-cols-4 ${
+        isAboutPage
+          ? "fixed bottom-0 left-0 right-0 bg-black z-40"
+          : "mt-[20px]"
+      }`}
       id="contact"
     >
       <div className="col-span-2 desktop:col-span-1 flex flex-col  tablet:w-auto pr-1 tablet:pr-0">

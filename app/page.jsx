@@ -96,7 +96,7 @@ export default async function Home() {
     }
 
     return (
-      <div className="mt-[80px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
+      <div className="mt-[90px] tablet:mt-[120px] laptop:mt-[0px] px-[40px]">
         <AvatarHoverSection />
 
         <div className="grid grid-cols-12">

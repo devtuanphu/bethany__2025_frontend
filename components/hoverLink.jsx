@@ -9,11 +9,34 @@ export default function HoverLink({
   mediaSrc,
   width = 300,
   height = 200,
+  tabletWidth,
+  tabletHeight,
+  desktopWidth,
+  desktopHeight,
 }) {
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [imageSize, setImageSize] = useState({ width, height });
   const linkRef = useRef(null);
   const imageRef = useRef(null);
+
+  // Calculate responsive image size
+  useEffect(() => {
+    const updateImageSize = () => {
+      const viewportWidth = window.innerWidth;
+      if (viewportWidth >= 1440 && desktopWidth && desktopHeight) {
+        setImageSize({ width: desktopWidth, height: desktopHeight });
+      } else if (viewportWidth >= 700 && tabletWidth && tabletHeight) {
+        setImageSize({ width: tabletWidth, height: tabletHeight });
+      } else {
+        setImageSize({ width, height });
+      }
+    };
+
+    updateImageSize();
+    window.addEventListener("resize", updateImageSize);
+    return () => window.removeEventListener("resize", updateImageSize);
+  }, [width, height, tabletWidth, tabletHeight, desktopWidth, desktopHeight]);
 
   useEffect(() => {
     if (show && linkRef.current) {
@@ -21,8 +44,8 @@ export default function HoverLink({
         if (!linkRef.current) return;
         
         const linkRect = linkRef.current.getBoundingClientRect();
-        const imageWidth = width;
-        const imageHeight = height;
+        const imageWidth = imageSize.width;
+        const imageHeight = imageSize.height;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         
@@ -76,7 +99,7 @@ export default function HoverLink({
         window.removeEventListener("resize", handleUpdate);
       };
     }
-  }, [show, width, height]);
+  }, [show, imageSize.width, imageSize.height]);
 
   return (
     <span className="relative inline-block">
@@ -100,16 +123,16 @@ export default function HoverLink({
             left: `${position.x}px`,
             top: `${position.y}px`,
             transform: "translate(-50%, -50%)",
-            width: `${width}px`,
-            height: `${height}px`,
+            width: `${imageSize.width}px`,
+            height: `${imageSize.height}px`,
             pointerEvents: "auto",
           }}
         >
           <Image
             src={mediaSrc}
             alt={`Preview for ${label}`}
-            width={width}
-            height={height}
+            width={imageSize.width}
+            height={imageSize.height}
             className="w-full h-full object-contain"
             priority
             unoptimized
