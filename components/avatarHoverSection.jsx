@@ -5,7 +5,7 @@ import HoverVideo from "./hoverVideo";
 export default function AvatarHoverSection() {
   return (
     <div className="hidden desktop:block relative group">
-      <h1 className="text-[18vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
+      <h1 className="text-[17vw]  transition-opacity duration-300 hover:text-[#17FD5F]">
         hi, helloooo
       </h1>
 
