@@ -107,7 +107,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="pt-10 pb-4">
-          <h3 className="font-bold text-[#17FD5F] text-[16px] desktop:text-[30px]">
+          <h3 className="font-bold text-[#17FD5F] text-[20px] desktop:text-[30px]">
             *Selected Work
           </h3>
         </div>

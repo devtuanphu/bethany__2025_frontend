@@ -20,7 +20,7 @@ const ProjectTitle = ({ title, studio, subTitle4, isHovered }) => {
           className="inline-block transition-opacity duration-300 w-[14px] h-[16px] desktop:w-[21px] desktop:h-[24px]"
         />
       </span>
-      <h4 className="text-[12px] desktop:text-[25px] flex items-center">
+      <h4 className="text-[13px] tablet:text-[25px] desktop:text-[25px] flex items-center whitespace-nowrap overflow-hidden">
         <span className={`transition-colors duration-300 ${isHovered ? "text-[#17FD5F]" : ""}`}>
           {title || ""}
         </span>{" "}
