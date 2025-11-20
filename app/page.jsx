@@ -8,13 +8,8 @@ const AvatarHoverSection = dynamic(() => import("@/components/avatarHoverSection
   ssr: true,
 });
 
-// Lazy load VideoWrapper for client-side video handling
-const VideoWrapper = dynamic(() => import("@/components/videoWrapper"), {
-  ssr: false,
-});
-
-// Lazy load ProjectTitle for hover effect
-const ProjectTitle = dynamic(() => import("@/components/projectTitle"), {
+// Lazy load ProjectItem for hover effect on entire project
+const ProjectItem = dynamic(() => import("@/components/projectItem"), {
   ssr: false,
 });
 
@@ -120,63 +115,15 @@ export default async function Home() {
         <div className="flex flex-col gap-10">
           {mergeProject.length > 0 ? (
             mergeProject.map((item, projectIndex) => {
-              let slug = item?.slug;
               const isFirstProject = projectIndex === 0;
 
               return (
-                <div key={projectIndex} className="">
-                  <ProjectTitle
-                    title={item.title || ""}
-                    studio={item.studio || ""}
-                    subTitle4={item.subTitle4 || ""}
-                  />
-                  <div className="grid grid-cols-6 gap-4 py-4">
-                    {item?.groupMediaHome?.data?.map((itemMedia, mediaIndex) => {
-                      // Only prioritize first 3 media items of first project (above the fold)
-                      const isAboveFold = isFirstProject && mediaIndex < 3;
-                      const isVideo =
-                        itemMedia?.attributes?.url?.endsWith(".mp4") ||
-                        itemMedia?.attributes?.url?.endsWith(".webm");
-
-                      return (
-                        <div
-                          className="mobile:col-span-6 desktop:col-span-1"
-                          key={mediaIndex}
-                        >
-                          {isVideo ? (
-                            <Link href={`/${slug}`} passHref prefetch={false}>
-                              <VideoWrapper
-                                src={baseUrl + itemMedia?.attributes?.url}
-                                autoPlay={true}
-                                className="w-full rounded-xl"
-                                isAboveFold={isAboveFold}
-                              />
-                            </Link>
-                          ) : (
-                            <Link href={`/${slug}`} passHref prefetch={false}>
-                              <Image
-                                src={baseUrl + itemMedia?.attributes?.url}
-                                width={
-                                  itemMedia?.attributes?.formats?.medium?.width ||
-                                  700
-                                }
-                                height={
-                                  itemMedia?.attributes?.formats?.medium?.heght ||
-                                  100
-                                }
-                                alt="Bethany"
-                                className="w-[100%] h-auto rounded-xl"
-                                priority={isAboveFold}
-                                loading={isAboveFold ? "eager" : "lazy"}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 16vw"
-                              />
-                            </Link>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <ProjectItem
+                  key={projectIndex}
+                  item={item}
+                  baseUrl={baseUrl}
+                  isFirstProject={isFirstProject}
+                />
               );
             })
           ) : (
