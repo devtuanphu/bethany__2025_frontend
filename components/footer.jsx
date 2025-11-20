@@ -1,19 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { memo } from "react";
-import { usePathname } from "next/navigation";
 
 const Footer = () => {
-  const pathname = usePathname(); // Lấy đường dẫn hiện tại
-
-  const hideFooterPages = ["/about"];
-  const shouldHideFooter = hideFooterPages.includes(pathname); // Kiểm tra đường dẫn
-
   return (
     <div
-      className={` px-[40px] py-[28px] mt-[20px] min-h-[180px] grid grid-cols-4 ${
-        shouldHideFooter ? "hidden" : ""
-      } `}
+      className="px-[40px] py-[28px] mt-[20px] min-h-[180px] grid grid-cols-4"
       id="contact"
     >
       <div className="col-span-2 desktop:col-span-1 flex flex-col  tablet:w-auto pr-1 tablet:pr-0">

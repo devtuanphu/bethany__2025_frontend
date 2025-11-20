@@ -13,6 +13,11 @@ const VideoWrapper = dynamic(() => import("@/components/videoWrapper"), {
   ssr: false,
 });
 
+// Lazy load ProjectTitle for hover effect
+const ProjectTitle = dynamic(() => import("@/components/projectTitle"), {
+  ssr: false,
+});
+
 // Move outside component to avoid recreating on every render
 const searchData = {
   populate: [
@@ -120,18 +125,11 @@ export default async function Home() {
 
               return (
                 <div key={projectIndex} className="">
-                  <div>
-                    <h4 className="text-[12px] desktop:text-[25px]">
-                      {item.title || ""} /{" "}
-                      <span className="text-[#A0A0A0]">
-                        Studio: {item.studio || ""}
-                      </span>{" "}
-                      /{" "}
-                      <span className="text-[#A0A0A0]">
-                        {item.subTitle4 || ""}
-                      </span>
-                    </h4>
-                  </div>
+                  <ProjectTitle
+                    title={item.title || ""}
+                    studio={item.studio || ""}
+                    subTitle4={item.subTitle4 || ""}
+                  />
                   <div className="grid grid-cols-6 gap-4 py-4">
                     {item?.groupMediaHome?.data?.map((itemMedia, mediaIndex) => {
                       // Only prioritize first 3 media items of first project (above the fold)

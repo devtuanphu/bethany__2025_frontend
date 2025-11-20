@@ -12,7 +12,7 @@ const hoverData = {
 
 export default function AboutPage() {
   return (
-    <div className=" bg-black text-white pt-[80px] tablet:pt-[120px] laptop:pt-[100px] px-[40px] pb-[40px] overflow-x-hidden overflow-y-auto">
+    <div className="bg-black text-white pt-[80px] tablet:pt-[120px] laptop:pt-[100px] px-[40px] pb-[40px] overflow-x-hidden overflow-y-auto min-h-[100vh]">
       <div className="text-[20px] tablet:text-[38px] laptop:text-[44px] leading-[1] font-medium relative">
         <div className="leading-[20px] desktop:leading-[50px]">
           Hello! My name is{" "}

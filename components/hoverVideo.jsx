@@ -183,8 +183,8 @@ export default function HoverVideo({ src, className = "" }) {
       <video
         ref={videoRef}
         src={src}
-        width={600}
-        height={400}
+        width={400}
+        height={200}
         loop
         muted
         playsInline
