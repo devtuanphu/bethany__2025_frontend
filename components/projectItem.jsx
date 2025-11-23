@@ -10,8 +10,8 @@ const VideoWrapper = dynamic(() => import("@/components/videoWrapper"), {
 
 const ProjectTitle = ({ title, studio, subTitle4, isHovered }) => {
   return (
-    <div className="flex items-center gap-2">
-      <span className="inline-block transition-opacity duration-300">
+    <div className="flex items-start tablet:items-center gap-2">
+      <span className="inline-block transition-opacity duration-300 pt-[2px] pb-[2px] tablet:pt-0 tablet:pb-0">
         <Image
           src={isHovered ? "/down-right-arrow-stroke_2.svg" : "/right-arrow-stroke_2.svg"}
           alt="arrow"
@@ -20,7 +20,7 @@ const ProjectTitle = ({ title, studio, subTitle4, isHovered }) => {
           className="inline-block transition-opacity duration-300 w-[14px] h-[16px] desktop:w-[21px] desktop:h-[24px]"
         />
       </span>
-      <div className="text-[10px] tablet:text-[25px] desktop:text-[25px] flex items-center whitespace-nowrap overflow-hidden gap-2">
+      <div className="text-[16px] tablet:text-[25px] desktop:text-[25px] flex items-center flex-wrap tablet:flex-nowrap tablet:whitespace-nowrap gap-1 tablet:gap-2">
         <h4 className={`transition-colors duration-300 ${isHovered ? "text-[#17FD5F]" : ""}`}>
           {title || ""}
         </h4>
