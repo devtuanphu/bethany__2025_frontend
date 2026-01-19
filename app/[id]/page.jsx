@@ -1,6 +1,11 @@
 "use server";
 import Image from "next/image";
 import React from "react";
+import dynamic from "next/dynamic";
+
+const VideoWrapper = dynamic(() => import("@/components/videoWrapper"), {
+  ssr: false,
+});
 
 async function fetchWithToken(endpoint) {
   const token = process.env.NEXT_PUBLIC_TOKEN_DEV;
@@ -93,14 +98,10 @@ const page = async ({ params }) => {
       <div className="bg-black text-white px-[40px] py-6 space-y-10 mt-[80px] tablet:mt-[120px] laptop:mt-[80px]">
         {firstMedia ? (
           isVideo ? (
-            <video
+            <VideoWrapper
               src={process.env.NEXT_PUBLIC_URL_BE + firstMedia.url}
-              controls
               autoPlay={true}
-              playsInline
-              preload="auto"
-              className="w-full rounded-xl"
-              muted
+              className="w-full h-auto rounded-xl"
             />
           ) : (
             <Image
@@ -218,15 +219,10 @@ const page = async ({ params }) => {
             return (
               <div key={key}>
                 {item?.mime?.startsWith("video") ? (
-                  <video
+                  <VideoWrapper
                     src={process.env.NEXT_PUBLIC_URL_BE + item.url}
-                    controls
-                    autoPlay={false}
-                    playsInline
-                    preload="none"
-                    className="w-full rounded-xl"
-                    muted
-                    loading="lazy"
+                    autoPlay={true}
+                    className="w-full h-auto rounded-xl"
                   />
                 ) : (
                   <Image
